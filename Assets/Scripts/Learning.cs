@@ -40,7 +40,7 @@ public class Learning : MonoBehaviour
     }
 */
 
-
+/*
     public void Button()
     
     {
@@ -48,6 +48,6 @@ public class Learning : MonoBehaviour
         var result = time < 18 ? "Good day." : "Good evening.";
         text.text = "I love C#";
     }
-    
+*/    
     
 }
