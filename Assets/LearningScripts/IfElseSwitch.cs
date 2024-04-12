@@ -11,7 +11,7 @@ public class IfElseSwitch : MonoBehaviour
     public void Statements()
     {
         int day = 7;
-        switch (day) 
+        switch (day)
         {
             case 1:
                 Debug.Log("Monday");
@@ -34,5 +34,6 @@ public class IfElseSwitch : MonoBehaviour
             case 7:
                 Debug.Log("Sunday");
                 break;
+        }
     }
 }
