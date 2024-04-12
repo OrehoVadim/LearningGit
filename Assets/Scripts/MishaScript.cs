@@ -11,7 +11,7 @@ public class MishaScript : MonoBehaviour
 
     public void Test()
     {
-        List<int> array = new List<int> { 1, 2, 3};
+        List<int> array = new List<int> { 1, 2, 3, 4, 5, 6, 7 , 8 };
 
         if (array[0] < 100)
         {
@@ -29,7 +29,7 @@ public class MishaScript : MonoBehaviour
         }
 
         var i = 0;
-        while (i < 3)
+        while (i < array.Count) // 8
         {
             if (array[i] < 100)
             {
@@ -39,11 +39,27 @@ public class MishaScript : MonoBehaviour
             i++;
         }
 
-        for (i = 0; i < 3; i++)
+        // array.Count = 8
+        for (i = 0; i < array.Count; i++)
         {
-            if (array[i] < 100)
+            var item = array[i];
+            if (item < 100)
             {
-                array.Remove(array[i]);
+                array.Remove(item);
+            }
+
+            break;
+        }
+
+        // for (i = 0; i < array.Count; i++)
+        // {
+        //     var item = array[i]
+        // }
+        foreach (var item in array)
+        {
+            if (item < 100)
+            {
+                array.Remove(item);
             }
         }
     }
