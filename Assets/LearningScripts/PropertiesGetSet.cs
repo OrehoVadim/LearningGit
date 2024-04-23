@@ -14,7 +14,7 @@ public class PropertiesGetSet : MonoBehaviour
     public string Name
     {
         // Метод get возвращает значение переменной
-        // ООП set - public
+        // ООП get - public
         get
         {
             if (string.IsNullOrEmpty(_name))
@@ -48,27 +48,4 @@ public class PropertiesGetSet : MonoBehaviour
         get { return _number2; }
         set { _number2 = value; }
     }
-    
-// #3
-    // public int Number3
-    // {
-    //     get
-    //     {
-    //         if (int.IsNullOrEmpty(_number3))
-    //         {
-    //             return "Default";
-    //         }
-    //         return _number3;
-    //     }
-    //     
-    //     set
-    //     {
-    //         if (int.IsNullOrEmpty(_number3))
-    //         {
-    //             _number3 = "Default";
-    //         }
-    //         _number3 = value;
-    //     }
-    // }
-
 }
