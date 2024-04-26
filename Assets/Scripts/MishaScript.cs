@@ -3,26 +3,23 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MishaScript : MonoBehaviour
-{
-    private void Awake()
-    {
-
-        // Test();
-        
-        float radius = 10;
-        float height = 20;
-        float result = CalculateConeVolume(radius, height);
-        Debug.Log(result);
-    }
-    
-    public float CalculateConeVolume(float radius, float height)
-    {
-        return (1f / 3f) * 3.1415f * (radius * radius) * height;
-    }
-    
-
-
+// public class MishaScript : MonoBehaviour
+// {
+//     int apple1 = 100;
+//     int apple2 = 150;
+//     
+//     public int WeightApples(int apple1, int apple2)
+//     {
+//         int result = apple1 + apple2;
+//         return result;
+//     }
+//     
+//     private void Awake()
+//     {
+//         int result = WeightApples(apple1, apple2);
+//         Debug.Log(result);
+//     }
+//     
     // public void Test()
     // {
     //     List<int> array = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
@@ -53,6 +50,7 @@ public class MishaScript : MonoBehaviour
     //         i++;
     //     }
 
+    
         // array.Count = 8
         // for (i = 0; i < array.Count; i++)
         // {
@@ -65,6 +63,7 @@ public class MishaScript : MonoBehaviour
         //     break;
         // }
 
+        
         // for (i = 0; i < array.Count; i++)
         // {
         //     var item = array[i]
@@ -77,5 +76,5 @@ public class MishaScript : MonoBehaviour
         //     }
         // }
     
-}
+// }
 

@@ -16,10 +16,10 @@ public class Tasks : MonoBehaviour
     public void ApplesWeight() // 8) начало выполнения метода для подсчета веса яблок
     { 
 
-        List<Apples> apples = new List<Apples>(); // 9) создается новый список, который будет содержать (хранить) объекты класса Apples
-                                                    // кампилятов видит определение класса Apples и использует его для создания списка
+        List<Apples> apples = new List<Apples>();      // 9) создается новый список, который будет содержать (хранить) объекты класса Apples
+                                                       // кампилятов видит определение класса Apples и использует его для создания списка
                                                     
-        // 10) Добавление объектов Apples с разным весом в список apples
+                                                       // 10) Добавление объектов Apples с разным весом в список apples
         apples.Add(new Apples { Weight = 85 });
         apples.Add(new Apples { Weight = 100 });
         apples.Add(new Apples { Weight = 130 });
