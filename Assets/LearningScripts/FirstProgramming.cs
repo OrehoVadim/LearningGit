@@ -10,12 +10,7 @@ namespace LearningScripts
 {
     public class FirstProgramming : MonoBehaviour
     {
-
-            #region MyRegion
-
-            
-
-            
+    #region MyRegion
             
 // 1) В корзине 2 яблока, 3 груши и 2 банана+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       // Сколько фруктов в корзине?
@@ -602,52 +597,38 @@ namespace LearningScripts
             // {
             //     string text = "Arrays are used to store multiple values in a single variable, " +
             //                       "instead of declaring separate variables for each value.";
-            //     string result = TextStrings(text);
+            //     string result = CapitalizeFirstWords(text);
             //     Debug.Log(result);
             // }
-            //
-            //     public string TextStrings(string text)
+            //     
+            //     public string CapitalizeFirstWords(string text)
             //     {
-            //         string[] words = text.Split(' ');
-            //
-            //         char.ToUpper()
-            //         for (int i = 0; i < words.Length; i++)
+            //         // + Разбить строку на подстроки
+            //         // + Каждый первый символ сделать с большой буквы
+            //         // Обьединить подстроки в одну строку
+            //     
+            //         string[] subStrings = text.Split(' ');
+            //         //hello -> Hello
+            //         //world -> World
+            //     
+            //         for (int i = 0; i < subStrings.Length; i++)
             //         {
-            //             var words = words[i];
-            //             words[i]) =
+            //             //"Hello"
+            //             var subString = subStrings[i];
+            //             //["H", "E", "L", "L", "O"]
+            //             char[] arr = subString.ToCharArray();
+            //             arr[0] = char.ToUpper(arr[0]);
+            //             var resultString = new string(arr);
+            //             subStrings[i] = resultString;
             //         }
-            //         
-            //         return;
+            //     
+            //         var result = "";
+            //         foreach (var subString in subStrings)
+            //         {
+            //             result += subString + " ";
+            //         }
+            //         return result;
             //     }
-                // public string CapitalizeFirstWords(string initial)
-                // {
-                //     // + Разбить строку на подстроки
-                //     // + Каждый первый символ сделать с большой буквы
-                //     // Обьединить подстроки в одну строку
-                //
-                //     string[] subStrings = initial.Split(' ');
-                //     //hello -> Hello
-                //     //world -> World
-                //
-                //     for (int i = 0; i < subStrings.Length; i++)
-                //     {
-                //         //"Hello"
-                //         var subString = subStrings[i];
-                //         //["H", "E", "L", "L", "O"]
-                //         char[] arr = subString.ToCharArray();
-                //         arr[0] = char.ToUpper(arr[0]);
-                //         var resultString = new string(arr);
-                //         subStrings[i] = resultString;
-                //     }
-                //
-                //     var result = "";
-                //     foreach (var subString in subStrings)
-                //     {
-                //         result += subString + " ";
-                //     }
-                //
-                //     return result;
-                // }
                 
             
             
@@ -730,7 +711,6 @@ namespace LearningScripts
         
         
         
-        
         // int[,] myArray = new int[10, 10];
         //
         //         for (int i = 0; i < 10; i++)
@@ -740,8 +720,34 @@ namespace LearningScripts
         //                 myArray[i, j] = i * j; 
         //         }
         // }
-        //         
-        // public void PrintTwoDArray(int[,] array)
+        
+// Выводи в строку значения двомерного массива
+        // public void Awake()
+        // {
+        //      int[,] array = new int[10,10];
+        //      array = CopyingArray(array);
+        //      string result = PrintTwoDArray(array);
+        //      Debug.Log(result);
+        // }
+        //
+        // public int[,] CopyingArray(int[,] array)
+        // {
+        //     Random random = new Random();
+        //     int height = array.GetLength(0);
+        //     int width = array.GetLength(1);
+        //     
+        //     for (int i = 0; i < height; i++)
+        //     {
+        //         for (int j = 0; j < width; j++)
+        //         {
+        //             int rand = random.Next(1, 50);
+        //             array[i, j] = rand;
+        //         }
+        //     }
+        //     return array;
+        // }
+        //
+        // public string PrintTwoDArray(int[,] array)
         // {
         //         string result = "";
         //
@@ -759,11 +765,11 @@ namespace LearningScripts
         //
         //                 result += "]\n";
         //         }
-        //
-        //         Debug.Log(result);
+        //         return result;
         // }
         
         
-        #endregion 
+        
+    #endregion
     }
 }
