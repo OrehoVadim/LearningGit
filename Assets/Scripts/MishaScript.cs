@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-// public class MishaScript : MonoBehaviour
-// {
+public class MishaScript : MonoBehaviour
+{
 //     int apple1 = 100;
 //     int apple2 = 150;
 //     
@@ -76,5 +76,5 @@ using UnityEngine;
         //     }
         // }
     
-// }
+}
 
