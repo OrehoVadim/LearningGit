@@ -9,7 +9,14 @@ using Random = System.Random;
 namespace LearningScripts
 {
     public class FirstProgramming : MonoBehaviour
-    { 
+    {
+
+            #region MyRegion
+
+            
+
+            
+            
 // 1) В корзине 2 яблока, 3 груши и 2 банана+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       // Сколько фруктов в корзине?
       // public void Awake()
@@ -601,17 +608,47 @@ namespace LearningScripts
             //
             //     public string TextStrings(string text)
             //     {
-            //         string[] words = Input.Split('');
+            //         string[] words = text.Split(' ');
             //
+            //         char.ToUpper()
             //         for (int i = 0; i < words.Length; i++)
             //         {
-            //             words[i] =
+            //             var words = words[i];
+            //             words[i]) =
             //         }
             //         
             //         return;
             //     }
-            
-            
+                // public string CapitalizeFirstWords(string initial)
+                // {
+                //     // + Разбить строку на подстроки
+                //     // + Каждый первый символ сделать с большой буквы
+                //     // Обьединить подстроки в одну строку
+                //
+                //     string[] subStrings = initial.Split(' ');
+                //     //hello -> Hello
+                //     //world -> World
+                //
+                //     for (int i = 0; i < subStrings.Length; i++)
+                //     {
+                //         //"Hello"
+                //         var subString = subStrings[i];
+                //         //["H", "E", "L", "L", "O"]
+                //         char[] arr = subString.ToCharArray();
+                //         arr[0] = char.ToUpper(arr[0]);
+                //         var resultString = new string(arr);
+                //         subStrings[i] = resultString;
+                //     }
+                //
+                //     var result = "";
+                //     foreach (var subString in subStrings)
+                //     {
+                //         result += subString + " ";
+                //     }
+                //
+                //     return result;
+                // }
+                
             
             
             // public class Content
@@ -690,5 +727,42 @@ namespace LearningScripts
         //     Debug.Log("Coins: " + coins);
         //     
         // }
+        
+        
+        
+        
+        // int[,] myArray = new int[10, 10];
+        //
+        //         for (int i = 0; i < 10; i++)
+        // {
+        //         for (int j = 0; j < 10; j++)
+        //         {
+        //                 myArray[i, j] = i * j; 
+        //         }
+        // }
+        //         
+        // public void PrintTwoDArray(int[,] array)
+        // {
+        //         string result = "";
+        //
+        //         for (int i = 0; i < array.GetLength(0); i++)
+        //         {
+        //                 result += "[";
+        //                 for (int j = 0; j < array.GetLength(1); j++)
+        //                 {
+        //                         result += array[i, j]; ;
+        //                         if (j != array.GetLength(1) - 1)
+        //                         {
+        //                                 result += ", ";
+        //                         }
+        //                 }
+        //
+        //                 result += "]\n";
+        //         }
+        //
+        //         Debug.Log(result);
+        // }
+        
+        #endregion 
     }
 }
