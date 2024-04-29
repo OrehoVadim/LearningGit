@@ -12,7 +12,7 @@ namespace LearningScripts
     {
     #region MyRegion
             
-// 1) В корзине 2 яблока, 3 груши и 2 банана+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// 1) В корзине 2 яблока, 3 груши и 2 банана
       // Сколько фруктов в корзине?
       // public void Awake()
       // {
@@ -27,8 +27,9 @@ namespace LearningScripts
       //   {
       //       return a + b + c;
       //   }
-        
-// 2) Написать метод для поиска индекса элемента массива++++++++++++++++++++++++++++++++++++++++++++++
+ 
+      
+// 2) Написать метод для поиска индекса элемента массива
       // (тип элементов в массиве -int),
       // метод должен вернуть индекс первого найденного элемента (если он будет найден).
 
@@ -58,8 +59,9 @@ namespace LearningScripts
                 //     {
                 //     }
                 // } 
-        
-// 3) Найти минимальный элемент массива ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+                
+// 3) Найти минимальный элемент массива 
         // public void Awake()
         // {
         //     int minValue = FindMinElement();
@@ -80,7 +82,8 @@ namespace LearningScripts
         //     return min;
         // }
 
-// 4) Найти два наибольших элемента массива -----------------------------------------------------------
+        
+// 4) Найти два наибольших элемента массива
 //         public void Awake()
 //         {
 //             int[] array = { 5, 8, 6, 26, 3, 8, 45, 7 };
@@ -155,6 +158,7 @@ namespace LearningScripts
          //     return (max1, max2);
          // }
 
+         
 // 5) Посчитать сумму элементов массива
          //     public void Awake()
          // {
@@ -173,6 +177,7 @@ namespace LearningScripts
          //     return sum;
          // }
 
+         
 // 6) Заполнить массив по возростанию от 1 до 100
         // public void Awake() 
         // {
@@ -192,6 +197,7 @@ namespace LearningScripts
         //     return array;
         // }
 
+        
 // 7) Создать и заполнить массив случайными целыми числами
     // - пример вызова генератора случайных чисел:
     // Random random = new Random();
@@ -217,6 +223,7 @@ namespace LearningScripts
         //     return array;
         // }       
 
+        
 // 8) Проверить в массиве наличие одинаковых чисел
             // public void Awake()
             // {
@@ -247,6 +254,7 @@ namespace LearningScripts
             //         return result;
             // }
 
+            
 // 9) Переставить элементы массива в обратном порядке используя вспомогательный массив
             // public void Awake()
             // { 
@@ -282,6 +290,7 @@ namespace LearningScripts
             //         return array2;
             // }
 
+            
 // 10) Переставить элементы массива в обратном порядке Не используя вспомогательный массив
             //  public void Awake()
             // { 
@@ -344,6 +353,7 @@ namespace LearningScripts
                 //         return sum;
                 // }
 
+                
 // 12) Заполнить двумерный массив 10 на 10 случайными числами от 1 до 9
             // public void Awake()
             // {
@@ -404,6 +414,7 @@ namespace LearningScripts
             //     return array;
             // }
             
+            
 // 13) Двумерный массив скопировать в одномерный
             // public void Awake()
             // {
@@ -430,6 +441,7 @@ namespace LearningScripts
             //     return array1;
             // }
 
+            
 // 14) Заполнить двумерниы массив 10 на 10 случайными числами от 1 до 99 и определить количество четных чисел в массиве
 // int = 4 % 2;
         // public void Awake()
@@ -487,6 +499,7 @@ namespace LearningScripts
         //     return quantityEvenNumbers;
         // }
 
+        
 // 14) Одномерный массив скопировать в двумерный 4 на 4
         // public void Awake()
         // {
@@ -523,7 +536,6 @@ namespace LearningScripts
         // }
         
         
-        
 // Метод для приветствия:
 // Напиши метод,который принимает имя пользователя как аргумент и печатает приветствие с этим именем.
         // public void Awake()
@@ -536,6 +548,7 @@ namespace LearningScripts
         // {
         //     Debug.Log("Welcome to this code, " + name);
         // }
+  
         
 // Метод для расчёта:
 // Создай метод, который принимает два аргумента (цена товара и количество), возвращает общую стоимость.
@@ -552,6 +565,7 @@ namespace LearningScripts
         //         return price * quantity;
         // }
 
+        
 // Метод возвращающий булево значение:
 // Напиши метод, который проверяет, является ли переданное ему число четным, и возвращает true или false.
         // public void Avake()
@@ -572,7 +586,8 @@ namespace LearningScripts
         //         return false;
         //     }
         // }
-            
+   
+        
 // Метод с несколькими параметрами:
 // Напиши метод, который принимает три числа и возвращает их среднее арифметическое.
         // public void Awake()
@@ -589,6 +604,7 @@ namespace LearningScripts
         //         return (a + b + c) / 3;
         // }
 
+        
 // Метод для работы со строками:
 // Напиши метод, который принимает строку и
 // Напиши метод, который принимает строку,
@@ -629,97 +645,97 @@ namespace LearningScripts
             //         }
             //         return result;
             //     }
-                
             
             
-            // public class Content
-        // {
-        //     public int Money;
-        // }
-        //
-        // public class Cell
-        // {
-        //     public Content Wallet;
-        // }
-        //
-        // public Content GetElement(Cell[] array, int cellIndex)
-        // {
-        //     Cell ourCell = array[cellIndex];
-        //     Content wallet = ourCell.Wallet;
-        //     return wallet;
-        //     // подхожу к ячейке
-        //     // Открываю ячейку
-        //     // Забираю вместимое
-        // }
+// Забрать вместимое ячейки
+// public class Content
+// {
+//     public int Money;
+// }
+//
+// public class Cell
+// {
+//     public Content Wallet;
+// }
+//
+// public Content GetElement(Cell[] array, int cellIndex)
+// {
+//     Cell ourCell = array[cellIndex];
+//     Content wallet = ourCell.Wallet;
+//     return wallet;
+//     // подхожу к ячейке
+//     // Открываю ячейку
+//     // Забираю вместимое
+// }
 
 
+// Вес яблок
+// public class Apple
+// {
+//     public int Weight = 0;
+// }
+//
+// //входные данные - два яблока
+// //беру первое яблоко
+// //взвешиваю
+// //беру второе яблоко
+// //взвешиваю
+// //суммирую вес
+// public int CalculateWeight(Apple firstApple, Apple secondApple)
+// {
+//     var firstAppleWeight = firstApple.Weight;
+//     var secondAppleWeight = secondApple.Weight;
+//     var result = firstAppleWeight + secondAppleWeight;
+//
+//     return result;
+// }
+//
+// public int CalculateWeight(int firstAppleWeight, int secondAppleWeight)
+// {
+//     //
+//     var result = (firstAppleWeight + secondAppleWeight) * 2 + (firstAppleWeight + secondAppleWeight) * 2;
+//     return result;
+// }
 
-        // public class Apple
-        // {
-        //     public int Weight = 0;
-        // }
-        //
-        // //входные данные - два яблока
-        // //беру первое яблоко
-        // //взвешиваю
-        // //беру второе яблоко
-        // //взвешиваю
-        // //суммирую вес
-        // public int CalculateWeight(Apple firstApple, Apple secondApple)
-        // {
-        //     var firstAppleWeight = firstApple.Weight;
-        //     var secondAppleWeight = secondApple.Weight;
-        //     var result = firstAppleWeight + secondAppleWeight;
-        //
-        //     return result;
-        // }
-        //
-        // public int CalculateWeight(int firstAppleWeight, int secondAppleWeight)
-        // {
-        //     //
-        //     var result = (firstAppleWeight + secondAppleWeight) * 2 + (firstAppleWeight + secondAppleWeight) * 2;
-        //     return result;
-        // }
 
-
-
-        // private void OutputVariables()
-        // {
-        //     string name = "Mario";
-        //     int lifes = 3;
-        //     int coins = 0;
-        //     char connector = '&';
-        //     bool hasLives = true;
-        //     
-        //     Debug.Log("Name: " + name);
-        //     Debug.Log("Lifes: " + lifes);
-        //     Debug.Log("Coins: " + coins);
-        //     Debug.Log($"Name: {name} {connector} Lifes: {lifes} {connector} Coins: {coins}");
-        //     
-        //    coins = 50;
-        //
-        //     bool itRains = false;
-        //     
-        //     if (itRains == true)
-        //     {
-        //         Debug.Log("Take an umbrella, it's rainy outside");
-        //     }
-        //     
-        //     Debug.Log("Coins: " + coins);
-        //     
-        // }
+// Mario ~ lifes/coins
+// private void OutputVariables()
+// {
+//     string name = "Mario";
+//     int lifes = 3;
+//     int coins = 0;
+//     char connector = '&';
+//     bool hasLives = true;
+//     
+//     Debug.Log("Name: " + name);
+//     Debug.Log("Lifes: " + lifes);
+//     Debug.Log("Coins: " + coins);
+//     Debug.Log($"Name: {name} {connector} Lifes: {lifes} {connector} Coins: {coins}");
+//     
+//    coins = 50;
+//
+//     bool itRains = false;
+//     
+//     if (itRains == true)
+//     {
+//         Debug.Log("Take an umbrella, it's rainy outside");
+//     }
+//     
+//     Debug.Log("Coins: " + coins);
+//     
+// }
         
-        
-        
-        // int[,] myArray = new int[10, 10];
-        //
-        //         for (int i = 0; i < 10; i++)
-        // {
-        //         for (int j = 0; j < 10; j++)
-        //         {
-        //                 myArray[i, j] = i * j; 
-        //         }
-        // }
+
+// int[,] myArray = new int[10, 10];
+//
+//  for (int i = 0; i < 10; i++)
+// {
+//         for (int j = 0; j < 10; j++)
+//         {
+//                 myArray[i, j] = i * j; 
+//         }
+// }
+
         
 // Выводи в строку значения двомерного массива
         // public void Awake()
@@ -769,6 +785,55 @@ namespace LearningScripts
         // }
         
         
+// // 4) Есть List, в котором хранятся яблоки, у каждого яблока свой вес.
+// // В начале кода просто добавить в лист 10 яблок с разным весом.
+// // Потом нужно найти в этом листе яблоки, у которых вес < 100 грамм и выкинуть их из листа.
+//      private void Awake() // 1) Unity вызвал метод Awake, при загрузке в сцену объекта со скриптом
+//      { // 2) первым выполниться метод Awake()
+//          ApplesWeight(); // 3) вызывается метод для подсчета веса яблок
+//      } // 4) завершение выполнения метода Awake()
+//
+//      public class Apples // 5) определение публичного класса Apples, представляющий структуру объекта яблока
+//      {
+//          public int Weight; // 6) переменная представляющая вес яблока
+//      } // 7) определение публичного класса Apples, представляющий структуру объекта яблока
+//
+//      public void ApplesWeight() // 8) начало выполнения метода для подсчета веса яблок
+//      { 
+//
+//          List<Apples> apples = new List<Apples>();      // 9) создается новый список, который будет содержать (хранить) объекты класса Apples
+//                                                         // кампилятов видит определение класса Apples и использует его для создания списка
+//                                                      
+//                                                         // 10) Добавление объектов Apples с разным весом в список apples
+//          apples.Add(new Apples { Weight = 85 });
+//          apples.Add(new Apples { Weight = 100 });
+//          apples.Add(new Apples { Weight = 130 });
+//          apples.Add(new Apples { Weight = 70 });
+//          apples.Add(new Apples { Weight = 65 });
+//          apples.Add(new Apples { Weight = 180 });
+//          apples.Add(new Apples { Weight = 125 });
+//          apples.Add(new Apples { Weight = 195 });
+//          apples.Add(new Apples { Weight = 75 });
+//          apples.Add(new Apples { Weight = 70 });
+//
+//          // 10) цыкл с итерации по элементам списка apples с конца к началу
+//          for (int i = apples.Count - 1; i >= 0; i--) // определение переменной i;
+//                                                      // условие цыкла - пока значение переменной i больше или равно 0
+//                                                      // после каждой итерации i уменьшается на 1 - перемещения по элементам списка в обратном порядке.
+//          {
+//              if (apples[i].Weight < 100) // 11) Удаление яблок с весом менее 100 из списка apples
+//              {
+//                  apples.Remove(apples[i]);
+//              }
+//          } // 12) конец цыкла удаления яблок
+//
+//          // 13) цыкл для вывода веса оставшихся яблок 
+//          for (int i = 0; i < apples.Count; i++)
+//          {
+//              Debug.Log(apples[i].Weight); // 14) Вывод веса яблок в консоль Unity
+//          } // 15) конец цыкла удаления яблок
+//          
+//      } // 16. Завершение выполнения метода ApplesWeight() 
         
     #endregion
     }

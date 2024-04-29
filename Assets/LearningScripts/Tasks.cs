@@ -1,52 +1,253 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tasks : MonoBehaviour
 {
-    private void Awake() // 1) Unity вызвал метод Awake, при загрузке в сцену объекта со скриптом
-    { // 2) первым выполниться метод Awake()
-        ApplesWeight(); // 3) вызывается метод для подсчета веса яблок
-    } // 4) завершение выполнения метода Awake()
+    
+#region MyRegion
 
-    public class Apples // 5) определение публичного класса Apples, представляющий структуру объекта яблока
+// 1) Написать метод для подсчета обьема конуса.
+//Аргументы - радиус и высота. Возвращает посчитанный обьем
+    // public void Awake()
+    // {
+    //     int radius = 50;
+    //     int height = 30;
+    //     float сoneVolume = CalculatingConeVolume(radius, height);
+    //     Debug.Log(сoneVolume);
+    // }
+    //
+    // public float CalculatingConeVolume(int radius, int height)
+    // {
+    //     return  3f / 4f * 3.1415f * (radius * radius) * height;
+    // }
+    
+    
+// 1.1) Усовершенствовать задачу 1.
+// Написать метод для подсчета общего объёма набора конусов.
+// Добавить проверки на неправильные данные (как сможешь).   
+    public void Awake()
     {
-        public int Weight; // 6) переменная представляющая вес яблока
-    } // 7) определение публичного класса Apples, представляющий структуру объекта яблока
-
-    public void ApplesWeight() // 8) начало выполнения метода для подсчета веса яблок
-    { 
-
-        List<Apples> apples = new List<Apples>();      // 9) создается новый список, который будет содержать (хранить) объекты класса Apples
-                                                       // кампилятов видит определение класса Apples и использует его для создания списка
-                                                    
-                                                       // 10) Добавление объектов Apples с разным весом в список apples
-        apples.Add(new Apples { Weight = 85 });
-        apples.Add(new Apples { Weight = 100 });
-        apples.Add(new Apples { Weight = 130 });
-        apples.Add(new Apples { Weight = 70 });
-        apples.Add(new Apples { Weight = 65 });
-        apples.Add(new Apples { Weight = 180 });
-        apples.Add(new Apples { Weight = 125 });
-        apples.Add(new Apples { Weight = 195 });
-        apples.Add(new Apples { Weight = 75 });
-        apples.Add(new Apples { Weight = 70 });
-
-        // 10) цыкл с итерации по элементам списка apples с конца к началу
-        for (int i = apples.Count - 1; i >= 0; i--) // определение переменной i;
-                                                    // условие цыкла - пока значение переменной i больше или равно 0
-                                                    // после каждой итерации i уменьшается на 1 - перемещения по элементам списка в обратном порядке.
-        {
-            if (apples[i].Weight < 100) // 11) Удаление яблок с весом менее 100 из списка apples
-            {
-                apples.Remove(apples[i]);
-            }
-        } // 12) конец цыкла удаления яблок
-
-        // 13) цыкл для вывода веса оставшихся яблок 
-        for (int i = 0; i < apples.Count; i++)
-        {
-            Debug.Log(apples[i].Weight); // 14) Вывод веса яблок в консоль Unity
-        } // 15) конец цыкла удаления яблок
         
-    } // 16. Завершение выполнения метода ApplesWeight()
+    }
+    
+    
+    
+
+// 1.2) Усовершенствовать задачу 1.1.
+// Написать метод для подсчета обьема фигуры, в зависимости от ее типа (конус, цилиндр, шар, квадрат).
+// Добавить всевозможные проверки.
+
+    
+// 2) Написать метод, который принимает аргументом массив чисел и возвращает “перевернутый массив”,
+// то есть массив такого же размера, но с числами в обратном порядке.
+    // public void Awake()
+    // {
+    //     int[] array = { 1, 3, 5, 7, 9, 11, 13 };
+    //     int[] array2 = new int[array.Length];
+    //     InvertedArray(array, array2);
+    //     Debug.Log(string.Join(", ", array2));
+    // }
+    //
+    // public int[] InvertedArray(int[] array, int[] array2)
+    // {
+    //     for (int i = 0; i < array.Length; i++)
+    //     {
+    //         
+    //         array2[i] = array[array.Length - 1 - i];
+    //     }
+    //     return array2;
+    // }
+    
+    // Option 2:
+    // public void Awake()
+    // {
+    //     int[] array = { 1, 3, 5, 7, 9, 11, 13 };
+    //     InvertedArray(array);
+    //     Debug.Log(string.Join(", ", array));
+    // }
+    //
+    // public int[] InvertedArray(int[] array)
+    // {
+    //     for (int i = 0; i < array.Length / 2; i++)
+    //     {
+    //         int value = array[i];
+    //         array[i] = array[array.Length - 1 - i];
+    //         array[array.Length - 1 - i] = value;
+    //     }
+    //     return array;
+    // }
+    
+    
+// 2.1) Решить задачу № 2 про “перевернутый массив” всеми тремя циклами -
+// while, for, foreach    
+    
+    
+// 3) Написать метод для обработки списка оценок.
+// Оценки получаем в американском стиле - A,B,C,D,E,
+// для каждой оценки вывести в консоль ее аналог цифрой: A =5, B = 4 и т.д.
+    // public void Awake()
+    // {
+    //     List<char> evaluations = new List<char> {'A', 'B', 'C', 'D', 'E' };
+    //     evaluations = ProcessingListRatings(evaluations);
+    //     Debug.Log(evaluations);
+    // }
+    //
+    // public List<char> ProcessingListRatings(List<char> evaluations)
+    // {
+    //     foreach (var value in evaluations)
+    //     {
+    //         switch (value)
+    //         {
+    //             case 'A':
+    //             {
+    //                 Debug.Log("5");
+    //                 break;
+    //             }
+    //             case 'B':
+    //             {
+    //                 Debug.Log("4");
+    //                 break;
+    //             }
+    //             case 'C':
+    //             {
+    //                 Debug.Log("3");
+    //                 break;
+    //             }
+    //             case 'D':
+    //             {
+    //                 Debug.Log("2");
+    //                 break;
+    //             }
+    //             case 'E':
+    //             {
+    //                 Debug.Log("1");
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     return evaluations;
+    // }
+
+    
+// 3.1) Переделать задачу 3,
+// заменить switch на Dictionary.
+// Добавить проверки на неправильные данные (как сможешь).    
+    
+    
+// 4) Есть List, в котором хранятся яблоки, у каждого яблока свой вес.
+// В начале кода просто добавить в лист 10 яблок с разным весом.
+// Потом нужно найти в этом листе яблоки, у которых вес < 100 грамм и выкинуть их из листа.
+    // public void Awake()
+    //  {
+    //      List<Apples> apples = ApplesWeight();
+    //      foreach (var apple in apples)
+    //      {
+    //          Debug.Log(apple.weight);
+    //      }
+    //  }
+    //  public class Apples
+    //  {
+    //      public int weight;
+    //  }
+    //
+    //  public List<Apples> ApplesWeight()
+    //  {
+    //
+    //      List<Apples> apples = new List<Apples>();
+    //
+    //      apples.Add(new Apples { weight = 85 });
+    //      apples.Add(new Apples { weight = 100 });
+    //      apples.Add(new Apples { weight = 130 });
+    //      apples.Add(new Apples { weight = 70 });
+    //      apples.Add(new Apples { weight = 65 });
+    //      apples.Add(new Apples { weight = 180 });
+    //      apples.Add(new Apples { weight = 125 });
+    //      apples.Add(new Apples { weight = 195 });
+    //      apples.Add(new Apples { weight = 75 });
+    //      apples.Add(new Apples { weight = 70 });
+    //
+    //      for (int i = apples.Count - 1; i >= 0; i--)
+    //      {
+    //          if (apples[i].weight < 100)
+    //          {
+    //              apples.Remove(apples[i]);
+    //          }
+    //      }
+    //      return apples;
+    //  }
+    
+    
+// 5) Написать метод, который принимает аргументом строку и возвращает количество гласных в ней    
+    // public void Awake()
+    // {
+    //     string text = "Strings are used for storing text.";
+    //     int vowels = NumberVowelsStrings(text);
+    //     Debug.Log(vowels);
+    // }
+    //
+    // public int NumberVowelsStrings(string text)
+    // {
+    //     int vowels = 0;
+    //     char[] vowelsArray = { 'a', 'e', 'i', 'o', 'u', 'y' };
+    //     foreach (var values in vowelsArray)
+    //     {
+    //         for (int i = 0; i < text.Length; i++)
+    //         {
+    //             if (text [i] == values)
+    //             {
+    //                 vowels++;
+    //             }
+    //         } 
+    //     }
+    //     return vowels;
+    // }
+    
+    
+// 6) Создать логику Адресной Книги    
+    
+    // public void Awake()
+    // {
+    //     List<AddressBook> addressBook = DataInput();
+    //     foreach (var address in addressBook)
+    //     {
+    //         Debug.Log($"Name: {address.name} \n Number: {address.phoneNumber} \n Address: {address.city}");
+    //     }
+    // }
+    //
+    // public class AddressBook
+    // {
+    //     public string name;
+    //     public int phoneNumber;
+    //     public string city;
+    // }
+    //
+    // public List<AddressBook> DataInput()
+    // {
+    //     List<AddressBook> addressBook = new List<AddressBook>();
+    //     addressBook.Add(new AddressBook { name = "Victor", phoneNumber = 7920995, city = "London" });
+    //     addressBook.Add(new AddressBook { name = "Jerry", phoneNumber = 9656235, city = "Berlin" });
+    //     addressBook.Add(new AddressBook { name = "Tom", phoneNumber = 1560826, city = "Tokyo" });
+    //     addressBook.Add(new AddressBook { name = "Mary", phoneNumber = 5550826, city = "NY" });
+    //     
+    //     return addressBook;
+    // }
+    
+    
+// 7) Создать игру
+// “Угадай Номер”    
+
+
+// 8) Описать класс
+// “Человек”
+
+
+// 9) Написать метод,
+// который принимает аргументом строку
+// и возвращает сумму отдельных чисел в ней
+
+    
+    #endregion
+
 }
