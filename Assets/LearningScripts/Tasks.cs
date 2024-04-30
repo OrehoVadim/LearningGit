@@ -5,65 +5,70 @@ using UnityEngine;
 
 public class Tasks : MonoBehaviour
 {
+    //Cone
+    public int radius = 50;
+    public int height = 20;
     
-#region MyRegion
+    //Invert
+    public int[] array = { 1, 3, 5, 7, 9, 11, 13 };
 
-// 1) Написать метод для подсчета обьема конуса.
-//Аргументы - радиус и высота. Возвращает посчитанный обьем
-    // public void Awake()
-    // {
-    //     int radius = 50;
-    //     int height = 30;
-    //     float сoneVolume = CalculatingConeVolume(radius, height);
-    //     Debug.Log(сoneVolume);
-    // }
-    //
-    // public float CalculatingConeVolume(int radius, int height)
-    // {
-    //     return  3f / 4f * 3.1415f * (radius * radius) * height;
-    // }
+    //TODO put variables here, do not copy awake method. Use 1 awake method
+    //TODO Uncomment all methods and classes
+    //TODO use /// before each method or class and put task description there
+    //TODO correct method name everywhere. Name rule - What will it do "The method will ..." ?
+    //TODO all public field starts with Capital letter
+
+    public void Awake()
+    {
+        // var coneVolume = CalculateConeVolume(radius, height);
+        // Debug.Log(coneVolume);
+    }
+    
+
+    /// <summary>
+    /// 1) Написать метод для подсчета обьема конуса. Аргументы - радиус и высота. Возвращает посчитанный обьем
+    /// </summary>
+    public float CalculateConeVolume(int radius, int height)
+    {
+        return 3f / 4f * 3.1415f * (radius * radius) * height;
+    }
     
     
 // 1.1) Усовершенствовать задачу 1.
 // Написать метод для подсчета общего объёма набора конусов.
 // Добавить проверки на неправильные данные (как сможешь).   
-    public void Awake()
-    {
-        
-    }
-    
-    
-    
+
+
+
 
 // 1.2) Усовершенствовать задачу 1.1.
 // Написать метод для подсчета обьема фигуры, в зависимости от ее типа (конус, цилиндр, шар, квадрат).
 // Добавить всевозможные проверки.
 
     
-// 2) Написать метод, который принимает аргументом массив чисел и возвращает “перевернутый массив”,
+// 2) Написать метод, который принимает аргументом массив чисел и возвращает “перевернутый массив”, +++
 // то есть массив такого же размера, но с числами в обратном порядке.
     // public void Awake()
     // {
     //     int[] array = { 1, 3, 5, 7, 9, 11, 13 };
-    //     int[] array2 = new int[array.Length];
+    //     int[] array2 = new int[array.Length];     //TODO return an array, use proper naming
     //     InvertedArray(array, array2);
     //     Debug.Log(string.Join(", ", array2));
     // }
     //
-    // public int[] InvertedArray(int[] array, int[] array2)
+    // public int[] InvertedArray(int[] array, int[] array2)  // TODO Use proper naming  
     // {
     //     for (int i = 0; i < array.Length; i++)
     //     {
-    //         
-    //         array2[i] = array[array.Length - 1 - i];
+    //         array2[i] = array[array.Length - 1 - i];     
     //     }
     //     return array2;
     // }
     
-    // Option 2:
+    // Option 2:  -MK +++
     // public void Awake()
     // {
-    //     int[] array = { 1, 3, 5, 7, 9, 11, 13 };
+    //     int[] array = { 1, 3, 5, 7, 9, 11, 13 };  
     //     InvertedArray(array);
     //     Debug.Log(string.Join(", ", array));
     // }
@@ -90,8 +95,8 @@ public class Tasks : MonoBehaviour
     // public void Awake()
     // {
     //     List<char> evaluations = new List<char> {'A', 'B', 'C', 'D', 'E' };
-    //     evaluations = ProcessingListRatings(evaluations);
-    //     Debug.Log(evaluations);
+    //     evaluations = ProcessingListRatings(evaluations);   //TODO Why? You changed nothing and return the same array
+    //     Debug.Log(evaluations); //{'A', 'B', 'C', 'D', 'E' };
     // }
     //
     // public List<char> ProcessingListRatings(List<char> evaluations)
@@ -141,15 +146,15 @@ public class Tasks : MonoBehaviour
 // Потом нужно найти в этом листе яблоки, у которых вес < 100 грамм и выкинуть их из листа.
     // public void Awake()
     //  {
-    //      List<Apples> apples = ApplesWeight();
+    //      List<Apples> apples = ApplesWeight();     //TODO Remove arguments initialization outside of the method
     //      foreach (var apple in apples)
     //      {
     //          Debug.Log(apple.weight);
     //      }
     //  }
-    //  public class Apples
+    //  public class Apples    //TODO Naming
     //  {
-    //      public int weight;
+    //      public int weight;   //TODO Naming
     //  }
     //
     //  public List<Apples> ApplesWeight()
@@ -157,7 +162,7 @@ public class Tasks : MonoBehaviour
     //
     //      List<Apples> apples = new List<Apples>();
     //
-    //      apples.Add(new Apples { weight = 85 });
+    //      apples.Add(new Apples { weight = 85 });   //TODO wrong
     //      apples.Add(new Apples { weight = 100 });
     //      apples.Add(new Apples { weight = 130 });
     //      apples.Add(new Apples { weight = 70 });
@@ -176,9 +181,9 @@ public class Tasks : MonoBehaviour
     //          }
     //      }
     //      return apples;
-    //  }
-    
-    
+    //  } 
+
+
 // 5) Написать метод, который принимает аргументом строку и возвращает количество гласных в ней    
     // public void Awake()
     // {
@@ -190,8 +195,9 @@ public class Tasks : MonoBehaviour
     // public int NumberVowelsStrings(string text)
     // {
     //     int vowels = 0;
+    //     
     //     char[] vowelsArray = { 'a', 'e', 'i', 'o', 'u', 'y' };
-    //     foreach (var values in vowelsArray)
+    //     foreach (var values in vowelsArray)   //TODO illogical loop, you need to check your string for vowels, not vowels for string
     //     {
     //         for (int i = 0; i < text.Length; i++)
     //         {
@@ -203,10 +209,10 @@ public class Tasks : MonoBehaviour
     //     }
     //     return vowels;
     // }
-    
-    
-// 6) Создать логику Адресной Книги    
-    
+
+
+// 6) Создать логику Адресной Книги      //TODO Incorrect and incomplete. Use OOP to define a class with all needed logic
+
     // public void Awake()
     // {
     //     List<AddressBook> addressBook = DataInput();
@@ -216,12 +222,6 @@ public class Tasks : MonoBehaviour
     //     }
     // }
     //
-    // public class AddressBook
-    // {
-    //     public string name;
-    //     public int phoneNumber;
-    //     public string city;
-    // }
     //
     // public List<AddressBook> DataInput()
     // {
@@ -233,8 +233,8 @@ public class Tasks : MonoBehaviour
     //     
     //     return addressBook;
     // }
-    
-    
+
+
 // 7) Создать игру
 // “Угадай Номер”    
 
@@ -246,8 +246,5 @@ public class Tasks : MonoBehaviour
 // 9) Написать метод,
 // который принимает аргументом строку
 // и возвращает сумму отдельных чисел в ней
-
-    
-    #endregion
 
 }
