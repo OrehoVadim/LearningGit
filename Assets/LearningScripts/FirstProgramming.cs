@@ -836,6 +836,28 @@ namespace LearningScripts
 //          
 //      } // 16. Завершение выполнения метода ApplesWeight() 
 
-         #endregion
+
+//Dictionary        
+        // public void Awake()
+        // {
+        //     Dictionary<int, string> myDict = new Dictionary<int, string>();
+        //     myDict.Add(5, "A");
+        //     myDict.Add(4, "B");
+        //     myDict.Add(3, "C");
+        //     myDict.Add(2, "D");
+        //     myDict.Add(1, "E");
+        //
+        //     foreach (var variable in array)
+        //     {
+        //         if (myDict.TryGetValue(variable, out string result))
+        //         {
+        //             Debug.Log(result);
+        //         }
+        //     }
+        //
+        //     var mark = myDict[3]; // mark = "C"
+        // }
+        
+        #endregion
     }
 }

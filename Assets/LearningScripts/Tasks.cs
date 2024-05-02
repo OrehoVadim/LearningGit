@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,9 +7,148 @@ public class Tasks : MonoBehaviour
     //Cone
     public int radius = 50;
     public int height = 20;
-    
+
     //Invert
     public int[] array = { 1, 3, 5, 7, 9, 11, 13 };
+
+    //Entering Grades
+    public class EnteringGrade //TODO Naming
+    {
+        public char Grade; //TODO Naming
+    }
+
+    public class GradesClass
+    {
+        public List<EnteringGrade> GradesList = new List<EnteringGrade>();
+        // public void Grades(List<EnteringGrade> GradesList)
+        // {
+        //     GradesList.Add(new EnteringGrade { Grade = 'A' });
+        //     GradesList.Add(new EnteringGrade { Grade = 'B' });
+        //     GradesList.Add(new EnteringGrade { Grade = 'C' });
+        //     GradesList.Add(new EnteringGrade { Grade = 'D' });
+        //     GradesList.Add(new EnteringGrade { Grade = 'E' });
+        // }
+    }
+
+    //Apple Weight
+    public class AppleWeight //TODO Naming
+    {
+        public int Weight; //TODO Naming
+    }
+
+    public class AppleWeightClass
+    {
+        public List<AppleWeight> ApplesList = new List<AppleWeight>();
+
+        public void AddAppleWeight(List<AppleWeight> ApplesList)
+        {
+            ApplesList.Add(new AppleWeight { Weight = 85 }); //TODO wrong
+            ApplesList.Add(new AppleWeight { Weight = 100 });
+            ApplesList.Add(new AppleWeight { Weight = 130 });
+            ApplesList.Add(new AppleWeight { Weight = 70 });
+            ApplesList.Add(new AppleWeight { Weight = 65 });
+            ApplesList.Add(new AppleWeight { Weight = 180 });
+            ApplesList.Add(new AppleWeight { Weight = 125 });
+            ApplesList.Add(new AppleWeight { Weight = 195 });
+            ApplesList.Add(new AppleWeight { Weight = 75 });
+            ApplesList.Add(new AppleWeight { Weight = 70 });
+        }
+    }
+
+    //Text   
+    string text = "Strings are used for storing text.";
+
+    
+    //AddressBook    
+    
+    
+    public class Abonent
+    {
+        private string Name; // поле (переменная) будет хранить имя абонента
+        private string Surname;
+        private int PhoneNumber;
+    
+    
+        public Abonent(string name, string surname, int phoneNumber) // Конструктор инициализирует объект
+                                                                     // Принимает три параметра
+                                                                     // Использует параметры для установки значений полей 
+        {
+            this.Name = name; // строка устанавливает значение поля Name
+            this.Surname = surname;
+            this.PhoneNumber = phoneNumber;
+        }
+
+        public string AccessToName // Свойство для доступа к приватному имени
+        {
+            get { return Name; }
+            set { Name = value; }
+        }
+
+        public string AccessToSurname // Свойство для доступа к приватному имени
+        {
+            get
+            {
+                return Surname;
+            }
+            set
+            {
+                Surname = value;
+            }
+        }
+
+        public int AccessToPhoneNumber // Свойство для доступа к приватному имени
+        {
+            get
+            {
+                return PhoneNumber;
+            }
+            set
+            {
+                PhoneNumber = value;
+            }
+        }
+        
+        public List<Abonent> AbonentsList = new List<Abonent>();
+    }       
+    
+    // public class AddressBook
+    // {
+    //     public void AllAbonents(List<Abonent> AbonentsList) // Метод для вывода всех абонентов
+    //     {
+    //         
+    //     }
+    //     public void AddAbonent(List<Abonent> AbonentsList) // Метод для добавления абонентов
+    //     {
+    //         .Add();
+    //     }
+    //     public void DeleteAbonent(List<Abonent> AbonentsList) // Метод для удаления абонентов
+    //     {
+    //         .Remove();
+    //     }
+    // }
+        
+        
+    // public Abonent SearchAbonent(string name)
+    // {
+    //     return ;
+    // }
+    
+    
+    //Human
+    public class Human
+    {
+        public int Age;
+        public float Weight;
+
+        public Human(int age)
+        {
+            this.Age = age;
+          
+        }
+    }
+    
+    
+
 
     //TODO put variables here, do not copy awake method. Use 1 awake method
     //TODO Uncomment all methods and classes
@@ -18,233 +156,156 @@ public class Tasks : MonoBehaviour
     //TODO correct method name everywhere. Name rule - What will it do "The method will ..." ?
     //TODO all public field starts with Capital letter
 
+
+
     public void Awake()
     {
-        // var coneVolume = CalculateConeVolume(radius, height);
-        // Debug.Log(coneVolume);
+        // 1
+        var coneVolume = CalculateConeVolume(radius, height);
+        Debug.Log(coneVolume);
+
+        // 2, Option 1
+        int[] array2 = InvertArray(array); //TODO return an array, use proper naming
+        Debug.Log(string.Join(", ", array2));
+
+        // 2, Option 2
+        InvertArray2(array);
+        Debug.Log(string.Join(", ", array));
+
+        // 4
+        // WeighingApples();     //TODO Remove arguments initialization outside of the method
+        // foreach (var apple in )
+        // {
+        //     Debug.Log();
+        // }
+        // 5
+        int vowels = NumberVowelsStrings(text);
+        Debug.Log(vowels);
+
+        // 6
+
     }
+    
     
 
     /// <summary>
-    /// 1) Написать метод для подсчета обьема конуса. Аргументы - радиус и высота. Возвращает посчитанный обьем
+    /// 1) Написать метод для подсчета объёма конуса. Аргументы - радиус и высота. Возвращает посчитанный объём.
     /// </summary>
-    public float CalculateConeVolume(int radius, int height)
+    public float CalculateConeVolume(float radius, float height)
     {
         return 3f / 4f * 3.1415f * (radius * radius) * height;
     }
-    
-    
-// 1.1) Усовершенствовать задачу 1.
-// Написать метод для подсчета общего объёма набора конусов.
-// Добавить проверки на неправильные данные (как сможешь).   
 
 
+    /// <summary>
+    /// 2) Написать метод, который принимает аргументом массив чисел и возвращает “перевернутый массив”, +++
+    /// то есть массив такого же размера, но с числами в обратном порядке.
+    /// </summary>   
 
+    // Option 1:
+    public int[] InvertArray(int[] Array) // TODO Use proper naming  
+    {
+        int[] Array2 = new int[Array.Length];
+        for (int i = 0; i < Array.Length; i++)
+        {
+            Array2[i] = Array[Array.Length - 1 - i];
+        }
 
-// 1.2) Усовершенствовать задачу 1.1.
-// Написать метод для подсчета обьема фигуры, в зависимости от ее типа (конус, цилиндр, шар, квадрат).
-// Добавить всевозможные проверки.
+        return Array2;
+    }
 
-    
-// 2) Написать метод, который принимает аргументом массив чисел и возвращает “перевернутый массив”, +++
-// то есть массив такого же размера, но с числами в обратном порядке.
-    // public void Awake()
-    // {
-    //     int[] array = { 1, 3, 5, 7, 9, 11, 13 };
-    //     int[] array2 = new int[array.Length];     //TODO return an array, use proper naming
-    //     InvertedArray(array, array2);
-    //     Debug.Log(string.Join(", ", array2));
-    // }
-    //
-    // public int[] InvertedArray(int[] array, int[] array2)  // TODO Use proper naming  
-    // {
-    //     for (int i = 0; i < array.Length; i++)
-    //     {
-    //         array2[i] = array[array.Length - 1 - i];     
-    //     }
-    //     return array2;
-    // }
-    
     // Option 2:  -MK +++
-    // public void Awake()
-    // {
-    //     int[] array = { 1, 3, 5, 7, 9, 11, 13 };  
-    //     InvertedArray(array);
-    //     Debug.Log(string.Join(", ", array));
-    // }
-    //
-    // public int[] InvertedArray(int[] array)
-    // {
-    //     for (int i = 0; i < array.Length / 2; i++)
-    //     {
-    //         int value = array[i];
-    //         array[i] = array[array.Length - 1 - i];
-    //         array[array.Length - 1 - i] = value;
-    //     }
-    //     return array;
-    // }
-    
-    
-// 2.1) Решить задачу № 2 про “перевернутый массив” всеми тремя циклами -
-// while, for, foreach    
-    
-    
-// 3) Написать метод для обработки списка оценок.
-// Оценки получаем в американском стиле - A,B,C,D,E,
-// для каждой оценки вывести в консоль ее аналог цифрой: A =5, B = 4 и т.д.
-    // public void Awake()
-    // {
-    //     List<char> evaluations = new List<char> {'A', 'B', 'C', 'D', 'E' };
-    //     evaluations = ProcessingListRatings(evaluations);   //TODO Why? You changed nothing and return the same array
-    //     Debug.Log(evaluations); //{'A', 'B', 'C', 'D', 'E' };
-    // }
-    //
-    // public List<char> ProcessingListRatings(List<char> evaluations)
-    // {
-    //     foreach (var value in evaluations)
-    //     {
-    //         switch (value)
-    //         {
-    //             case 'A':
-    //             {
-    //                 Debug.Log("5");
-    //                 break;
-    //             }
-    //             case 'B':
-    //             {
-    //                 Debug.Log("4");
-    //                 break;
-    //             }
-    //             case 'C':
-    //             {
-    //                 Debug.Log("3");
-    //                 break;
-    //             }
-    //             case 'D':
-    //             {
-    //                 Debug.Log("2");
-    //                 break;
-    //             }
-    //             case 'E':
-    //             {
-    //                 Debug.Log("1");
-    //                 break;
-    //             }
-    //         }
-    //     }
-    //     return evaluations;
-    // }
-
-    
-// 3.1) Переделать задачу 3,
-// заменить switch на Dictionary.
-// Добавить проверки на неправильные данные (как сможешь).    
-    
-    
-// 4) Есть List, в котором хранятся яблоки, у каждого яблока свой вес.
-// В начале кода просто добавить в лист 10 яблок с разным весом.
-// Потом нужно найти в этом листе яблоки, у которых вес < 100 грамм и выкинуть их из листа.
-    // public void Awake()
-    //  {
-    //      List<Apples> apples = ApplesWeight();     //TODO Remove arguments initialization outside of the method
-    //      foreach (var apple in apples)
-    //      {
-    //          Debug.Log(apple.weight);
-    //      }
-    //  }
-    //  public class Apples    //TODO Naming
-    //  {
-    //      public int weight;   //TODO Naming
-    //  }
-    //
-    //  public List<Apples> ApplesWeight()
-    //  {
-    //
-    //      List<Apples> apples = new List<Apples>();
-    //
-    //      apples.Add(new Apples { weight = 85 });   //TODO wrong
-    //      apples.Add(new Apples { weight = 100 });
-    //      apples.Add(new Apples { weight = 130 });
-    //      apples.Add(new Apples { weight = 70 });
-    //      apples.Add(new Apples { weight = 65 });
-    //      apples.Add(new Apples { weight = 180 });
-    //      apples.Add(new Apples { weight = 125 });
-    //      apples.Add(new Apples { weight = 195 });
-    //      apples.Add(new Apples { weight = 75 });
-    //      apples.Add(new Apples { weight = 70 });
-    //
-    //      for (int i = apples.Count - 1; i >= 0; i--)
-    //      {
-    //          if (apples[i].weight < 100)
-    //          {
-    //              apples.Remove(apples[i]);
-    //          }
-    //      }
-    //      return apples;
-    //  } 
+    public void InvertArray2(int[] Array)
+    {
+        for (int i = 0; i < Array.Length / 2; i++)
+        {
+            int value = Array[i];
+            Array[i] = Array[Array.Length - 1 - i];
+            Array[Array.Length - 1 - i] = value;
+        }
+    }
 
 
-// 5) Написать метод, который принимает аргументом строку и возвращает количество гласных в ней    
-    // public void Awake()
+    /// <summary>
+    /// 3) Написать метод для обработки списка оценок. Оценки получаем в американском стиле - A,B,C,D,E, для каждой оценки вывести в консоль ее аналог цифрой: A =5, B = 4 и т.д.
+    /// </summary>      
+    public void RatingOutput(List<char> GradesList)
+    {
+        GradesClass gradesClass = new GradesClass();
+    }
+
+
+    /// <summary>
+    /// 4) Есть List, в котором хранятся яблоки, у каждого яблока свой вес.
+    /// В начале кода просто добавить в лист 10 яблок с разным весом.
+    /// Потом нужно найти в этом листе яблоки, у которых вес < 100 грамм
+    /// и выкинуть их из листа.
+    /// </summary>      
+    public void WeighingApples(List<AppleWeight> ApplesList)
+    {
+        for (int i = ApplesList.Count - 1; i >= 0; i--)
+        {
+            if (ApplesList[i].Weight < 100)
+            {
+                ApplesList.Remove(ApplesList[i]);
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// 5) Написать метод, который принимает аргументом строку и возвращает количество гласных в ней 
+    /// </summary>      
+    public int NumberVowelsStrings(string text)
+    {
+        int vowels = 0;
+
+        char[] vowelsArray = { 'a', 'e', 'i', 'o', 'u', 'y' };
+        foreach (var values in vowelsArray)                   //TODO illogical loop, you need to check your string for vowels, not vowels for string
+        {
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == values)
+                {
+                    vowels++;
+                }
+            }
+        }
+
+        return vowels;
+    }
+
+
+    /// <summary>
+    /// 6) Создать логику Адресной Книги      //TODO Incorrect and incomplete. Use OOP to define a class with all needed logic
+    /// </summary>
+        public void NewAbonent (Abonent abonent)
+        {
+            Abonent abonent1 = new Abonent("Jerry", "Jersy", 45687999);
+            Abonent abonent2 = new Abonent("Tom", "Scott", 3527877);
+            Abonent abonent3 = new Abonent("Mary", "Petty", 9653875);
+            
+
+        }
+    
+
+
+    /// 8) Описать класс “Человек”. У человека есть возраст и вес. И конструктор, в который передаешь возраст человека. Метод “Кушать”, который добавлять + 100 грамм к весу.
+
+
+    /// <summary>
+    /// 8) Описать класс “Человек”. У человека есть возраст и вес.
+    /// И конструктор, в который передаешь возраст человека.
+    /// Метод “Кушать”, который добавлять + 100 грамм к весу.
+    /// </summary>
+    // public void CreateNewPerson(int age, float weight)
     // {
-    //     string text = "Strings are used for storing text.";
-    //     int vowels = NumberVowelsStrings(text);
-    //     Debug.Log(vowels);
+    //     Human human = new Human(30, 80f);
     // }
     //
-    // public int NumberVowelsStrings(string text)
+    // public void Eat(int age, float weight)
     // {
-    //     int vowels = 0;
+    //     float weightIncrease = 100f;
     //     
-    //     char[] vowelsArray = { 'a', 'e', 'i', 'o', 'u', 'y' };
-    //     foreach (var values in vowelsArray)   //TODO illogical loop, you need to check your string for vowels, not vowels for string
-    //     {
-    //         for (int i = 0; i < text.Length; i++)
-    //         {
-    //             if (text [i] == values)
-    //             {
-    //                 vowels++;
-    //             }
-    //         } 
-    //     }
-    //     return vowels;
     // }
-
-
-// 6) Создать логику Адресной Книги      //TODO Incorrect and incomplete. Use OOP to define a class with all needed logic
-
-    // public void Awake()
-    // {
-    //     List<AddressBook> addressBook = DataInput();
-    //     foreach (var address in addressBook)
-    //     {
-    //         Debug.Log($"Name: {address.name} \n Number: {address.phoneNumber} \n Address: {address.city}");
-    //     }
-    // }
-    //
-    //
-    // public List<AddressBook> DataInput()
-    // {
-    //     List<AddressBook> addressBook = new List<AddressBook>();
-    //     addressBook.Add(new AddressBook { name = "Victor", phoneNumber = 7920995, city = "London" });
-    //     addressBook.Add(new AddressBook { name = "Jerry", phoneNumber = 9656235, city = "Berlin" });
-    //     addressBook.Add(new AddressBook { name = "Tom", phoneNumber = 1560826, city = "Tokyo" });
-    //     addressBook.Add(new AddressBook { name = "Mary", phoneNumber = 5550826, city = "NY" });
-    //     
-    //     return addressBook;
-    // }
-
-
-// 7) Создать игру
-// “Угадай Номер”    
-
-
-// 8) Описать класс
-// “Человек”
-
-
-// 9) Написать метод,
-// который принимает аргументом строку
-// и возвращает сумму отдельных чисел в ней
-
 }
