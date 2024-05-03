@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using LearningScripts;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -31,47 +32,47 @@ public class Tasks : MonoBehaviour
     }
 
     //Apple Weight
-    public class AppleWeight //TODO Naming
+    public class Apple //TODO Naming
     {
         public int Weight; //TODO Naming
     }
 
     public class AppleWeightClass
     {
-        public List<AppleWeight> ApplesList = new List<AppleWeight>();
+        public List<Apple> ApplesList = new List<Apple>();
 
-        public void AddAppleWeight(List<AppleWeight> ApplesList)
+        public void AddAppleWeight(List<Apple> ApplesList)
         {
-            ApplesList.Add(new AppleWeight { Weight = 85 }); //TODO wrong
-            ApplesList.Add(new AppleWeight { Weight = 100 });
-            ApplesList.Add(new AppleWeight { Weight = 130 });
-            ApplesList.Add(new AppleWeight { Weight = 70 });
-            ApplesList.Add(new AppleWeight { Weight = 65 });
-            ApplesList.Add(new AppleWeight { Weight = 180 });
-            ApplesList.Add(new AppleWeight { Weight = 125 });
-            ApplesList.Add(new AppleWeight { Weight = 195 });
-            ApplesList.Add(new AppleWeight { Weight = 75 });
-            ApplesList.Add(new AppleWeight { Weight = 70 });
+            ApplesList.Add(new Apple { Weight = 85 }); //TODO wrong
+            ApplesList.Add(new Apple { Weight = 100 });
+            ApplesList.Add(new Apple { Weight = 130 });
+            ApplesList.Add(new Apple { Weight = 70 });
+            ApplesList.Add(new Apple { Weight = 65 });
+            ApplesList.Add(new Apple { Weight = 180 });
+            ApplesList.Add(new Apple { Weight = 125 });
+            ApplesList.Add(new Apple { Weight = 195 });
+            ApplesList.Add(new Apple { Weight = 75 });
+            ApplesList.Add(new Apple { Weight = 70 });
         }
     }
 
     //Text   
     string text = "Strings are used for storing text.";
 
-    
+
     //AddressBook    
-    
-    
+
+
     public class Abonent
     {
         private string Name; // поле (переменная) будет хранить имя абонента
         private string Surname;
         private int PhoneNumber;
-    
-    
+
+
         public Abonent(string name, string surname, int phoneNumber) // Конструктор инициализирует объект
-                                                                     // Принимает три параметра
-                                                                     // Использует параметры для установки значений полей 
+            // Принимает три параметра
+            // Использует параметры для установки значений полей 
         {
             this.Name = name; // строка устанавливает значение поля Name
             this.Surname = surname;
@@ -86,31 +87,19 @@ public class Tasks : MonoBehaviour
 
         public string AccessToSurname // Свойство для доступа к приватному имени
         {
-            get
-            {
-                return Surname;
-            }
-            set
-            {
-                Surname = value;
-            }
+            get { return Surname; }
+            set { Surname = value; }
         }
 
         public int AccessToPhoneNumber // Свойство для доступа к приватному имени
         {
-            get
-            {
-                return PhoneNumber;
-            }
-            set
-            {
-                PhoneNumber = value;
-            }
+            get { return PhoneNumber; }
+            set { PhoneNumber = value; }
         }
-        
+
         public List<Abonent> AbonentsList = new List<Abonent>();
-    }       
-    
+    }
+
     // public class AddressBook
     // {
     //     public void AllAbonents(List<Abonent> AbonentsList) // Метод для вывода всех абонентов
@@ -126,28 +115,15 @@ public class Tasks : MonoBehaviour
     //         .Remove();
     //     }
     // }
-        
-        
+
+
     // public Abonent SearchAbonent(string name)
     // {
     //     return ;
     // }
-    
-    
-    //Human
-    public class Human
-    {
-        public int Age;
-        public float Weight;
 
-        public Human(int age)
-        {
-            this.Age = age;
-          
-        }
-    }
-    
-    
+
+    //Human
 
 
     //TODO put variables here, do not copy awake method. Use 1 awake method
@@ -184,9 +160,14 @@ public class Tasks : MonoBehaviour
 
         // 6
 
+        Human human = new Human(35);
+        human.Weight = 100f;
+
+
+
     }
-    
-    
+
+
 
     /// <summary>
     /// 1) Написать метод для подсчета объёма конуса. Аргументы - радиус и высота. Возвращает посчитанный объём.
@@ -241,7 +222,7 @@ public class Tasks : MonoBehaviour
     /// Потом нужно найти в этом листе яблоки, у которых вес < 100 грамм
     /// и выкинуть их из листа.
     /// </summary>      
-    public void WeighingApples(List<AppleWeight> ApplesList)
+    public void WeighingApples(List<Apple> ApplesList)
     {
         for (int i = ApplesList.Count - 1; i >= 0; i--)
         {
@@ -261,7 +242,8 @@ public class Tasks : MonoBehaviour
         int vowels = 0;
 
         char[] vowelsArray = { 'a', 'e', 'i', 'o', 'u', 'y' };
-        foreach (var values in vowelsArray)                   //TODO illogical loop, you need to check your string for vowels, not vowels for string
+        foreach (var values in
+                 vowelsArray) //TODO illogical loop, you need to check your string for vowels, not vowels for string
         {
             for (int i = 0; i < text.Length; i++)
             {
@@ -279,33 +261,13 @@ public class Tasks : MonoBehaviour
     /// <summary>
     /// 6) Создать логику Адресной Книги      //TODO Incorrect and incomplete. Use OOP to define a class with all needed logic
     /// </summary>
-        public void NewAbonent (Abonent abonent)
-        {
-            Abonent abonent1 = new Abonent("Jerry", "Jersy", 45687999);
-            Abonent abonent2 = new Abonent("Tom", "Scott", 3527877);
-            Abonent abonent3 = new Abonent("Mary", "Petty", 9653875);
-            
-
-        }
-    
-
-
-    /// 8) Описать класс “Человек”. У человека есть возраст и вес. И конструктор, в который передаешь возраст человека. Метод “Кушать”, который добавлять + 100 грамм к весу.
-
-
-    /// <summary>
-    /// 8) Описать класс “Человек”. У человека есть возраст и вес.
-    /// И конструктор, в который передаешь возраст человека.
-    /// Метод “Кушать”, который добавлять + 100 грамм к весу.
-    /// </summary>
-    // public void CreateNewPerson(int age, float weight)
-    // {
-    //     Human human = new Human(30, 80f);
-    // }
-    //
-    // public void Eat(int age, float weight)
-    // {
-    //     float weightIncrease = 100f;
-    //     
-    // }
+    public void NewAbonent(Abonent abonent)
+    {
+        Abonent abonent1 = new Abonent("Jerry", "Jersy", 45687999);
+        Abonent abonent2 = new Abonent("Tom", "Scott", 3527877);
+        Abonent abonent3 = new Abonent("Mary", "Petty", 9653875);
+        
+    }
 }
+
+
