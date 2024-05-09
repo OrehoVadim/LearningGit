@@ -673,7 +673,7 @@ namespace LearningScripts
 // Вес яблок
 // public class Apple
 // {
-//     public int Weight = 0;
+//     public int weight = 0;
 // }
 //
 // //входные данные - два яблока
@@ -684,8 +684,8 @@ namespace LearningScripts
 // //суммирую вес
 // public int CalculateWeight(Apple firstApple, Apple secondApple)
 // {
-//     var firstAppleWeight = firstApple.Weight;
-//     var secondAppleWeight = secondApple.Weight;
+//     var firstAppleWeight = firstApple.weight;
+//     var secondAppleWeight = secondApple.weight;
 //     var result = firstAppleWeight + secondAppleWeight;
 //
 //     return result;
@@ -796,7 +796,7 @@ namespace LearningScripts
 //
 //      public class Apples // 5) определение публичного класса Apples, представляющий структуру объекта яблока
 //      {
-//          public int Weight; // 6) переменная представляющая вес яблока
+//          public int weight; // 6) переменная представляющая вес яблока
 //      } // 7) определение публичного класса Apples, представляющий структуру объекта яблока
 //
 //      public void ApplesWeight() // 8) начало выполнения метода для подсчета веса яблок
@@ -806,23 +806,23 @@ namespace LearningScripts
 //                                                         // кампилятов видит определение класса Apples и использует его для создания списка
 //                                                      
 //                                                         // 10) Добавление объектов Apples с разным весом в список apples
-//          apples.Add(new Apples { Weight = 85 });
-//          apples.Add(new Apples { Weight = 100 });
-//          apples.Add(new Apples { Weight = 130 });
-//          apples.Add(new Apples { Weight = 70 });
-//          apples.Add(new Apples { Weight = 65 });
-//          apples.Add(new Apples { Weight = 180 });
-//          apples.Add(new Apples { Weight = 125 });
-//          apples.Add(new Apples { Weight = 195 });
-//          apples.Add(new Apples { Weight = 75 });
-//          apples.Add(new Apples { Weight = 70 });
+//          apples.Add(new Apples { weight = 85 });
+//          apples.Add(new Apples { weight = 100 });
+//          apples.Add(new Apples { weight = 130 });
+//          apples.Add(new Apples { weight = 70 });
+//          apples.Add(new Apples { weight = 65 });
+//          apples.Add(new Apples { weight = 180 });
+//          apples.Add(new Apples { weight = 125 });
+//          apples.Add(new Apples { weight = 195 });
+//          apples.Add(new Apples { weight = 75 });
+//          apples.Add(new Apples { weight = 70 });
 //
 //          // 10) цыкл с итерации по элементам списка apples с конца к началу
 //          for (int i = apples.Count - 1; i >= 0; i--) // определение переменной i;
 //                                                      // условие цыкла - пока значение переменной i больше или равно 0
 //                                                      // после каждой итерации i уменьшается на 1 - перемещения по элементам списка в обратном порядке.
 //          {
-//              if (apples[i].Weight < 100) // 11) Удаление яблок с весом менее 100 из списка apples
+//              if (apples[i].weight < 100) // 11) Удаление яблок с весом менее 100 из списка apples
 //              {
 //                  apples.Remove(apples[i]);
 //              }
@@ -831,7 +831,7 @@ namespace LearningScripts
 //          // 13) цыкл для вывода веса оставшихся яблок 
 //          for (int i = 0; i < apples.Count; i++)
 //          {
-//              Debug.Log(apples[i].Weight); // 14) Вывод веса яблок в консоль Unity
+//              Debug.Log(apples[i].weight); // 14) Вывод веса яблок в консоль Unity
 //          } // 15) конец цыкла удаления яблок
 //          
 //      } // 16. Завершение выполнения метода ApplesWeight() 
