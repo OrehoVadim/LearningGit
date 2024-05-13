@@ -2,24 +2,20 @@ using System.Collections.Generic;
 using LearningScripts;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Tasks : MonoBehaviour
 {
     //Invert (Task №2)
-    public int[] array = { 1, 3, 5, 7, 9, 11, 13 };
-    public int[] array2 = { 2, 4, 6, 8, 10, 12, 14 };
-    public int[] array3 = { 3, 6, 9, 12, 15, 18};
-
-    //Text (Task №5)
-    string text = "Strings are used for storing text.";
+    public int[] Array = { 1, 3, 5, 7, 9, 11, 13 };
+    public int[] Array2 = { 2, 4, 6, 8, 10, 12, 14 };
+    public int[] Array3 = { 3, 6, 9, 12, 15, 18};
     
-
     //TODO put variables here, do not copy awake method. Use 1 awake method
     //TODO Uncomment all methods and classes
     //TODO use /// before each method or class and put task description there
     //TODO correct method name everywhere. Name rule - What will it do "The method will ..." ?
     //TODO all public field starts with Capital letter
-
 
     public void Awake()
     {
@@ -27,31 +23,43 @@ public class Tasks : MonoBehaviour
         Cone cone = new Cone(50f, 20f);
         float radius = cone.Radius;
         float height = cone.Height;
-        var coneVolume = CalculateConeVolume(radius, height);
-        Debug.Log(coneVolume);
+        var volume = CalculateConeVolume(radius, height);
+        Debug.Log(volume);
+
         
-        // Task №1.1
-        // CalculateTotalConeVolume();
         // Task №1.2
-        // CalculateFigureVolume();
+        CalculationFigureVolume calculationFigureVolumee = new CalculationFigureVolume();
+        double coneVolume = calculationFigureVolumee.CalculateConeVolume(20, 30);
+        double cylinderVolume = calculationFigureVolumee.CalculateCylinderVolume(50, 20);
+        double layerVolume = calculationFigureVolumee.CalculateLayerVolume(10, 40);
+        double cubeVolume = calculationFigureVolumee.CalculateCubeVolume(25);
+        Debug.Log($"Cone Volume = {coneVolume}\nCylinderVolume = {cylinderVolume}\nLayerVolume = {layerVolume}\nCubeVolume = {cubeVolume}");
 
         // Task №2, Option 1
-        int[] arrayNew = InvertArray(array); //TODO return an array, use proper naming
+        int[] arrayNew = InvertArray(Array); //TODO return an array, use proper naming
         Debug.Log(string.Join(", ", arrayNew));
         // Task №2, Option 2
-        InvertArray2(array2);
-        Debug.Log(string.Join(", ", array2));
+        InvertArray2(Array2);
+        Debug.Log(string.Join(", ", Array2));
         
         //Task №2.1
         //Написать метод, который принимает аргументом массив чисел и возвращает “перевернутый массив”,
         //то есть массив такого же размера, но с числами в обратном порядке using System;
         //через while
-        InvertArray3(array3);
-        Debug.Log(string.Join(", ", array3));
+        InvertArray3(Array3);
+        Debug.Log(string.Join(", ", Array3));
 
         // Task №3
         List<char> GradesList = new List<char>();
-        RatingsListHandler(GradesList);
+        GradesListHandler(GradesList);
+        
+        // Task №3.1
+        Dictionary<int, char> gradesDictionary = new Dictionary<int, char>();
+        gradesDictionary.Add(5,'A');
+        gradesDictionary.Add(4,'B');
+        gradesDictionary.Add(3,'C');
+        gradesDictionary.Add(2,'D');
+        gradesDictionary.Add(1,'E');
 
         // Task №4, AppleList                    //TODO Remove arguments initialization outside of the method
         AppleList appleList = new AppleList(); //Создал экземпляр класса AppleList
@@ -63,35 +71,29 @@ public class Tasks : MonoBehaviour
         }
 
         // Task №5
-        int vowels = NumberVowelsStrings(text);
+        TextProcessing textProcessing = new TextProcessing();
+        int vowels = textProcessing.NumberVowelsStrings("Strings are used for storing text.");
         Debug.Log(vowels);
 
         // Task №6
         AddressBook addressBook = new AddressBook();
-        AddAbonents(addressBook);
-        // foreach (var abonents in addressBook.AbonentsList)
-        // {
-        //     Debug.Log($"{abonents.Name} {abonents.Surname}, {abonents.PhoneNumber}");
-        // }
-        DeleteAbonents(addressBook);
-        // foreach (var abonents in addressBook.AbonentsList)
-        // {
-        //     Debug.Log($"{abonents.Name} {abonents.Surname}, {abonents.PhoneNumber}");
-        // }
-        string searchAbonentName = "Tom";
-        // SearchAbonents(addressBook);
-        // foreach (var abonents in addressBook.AbonentsList)
-        // {
-        //     Debug.Log($"{abonents.Name} {abonents.Surname}, {abonents.PhoneNumber}");
-        // }
-        AllAbonents(addressBook);
+        addressBook.AddAbonents("Jerry", "Jersey", "+1(438)5687999");
+        addressBook.AddAbonents("Tom", "Scott", "+1(289)3527877");
+        addressBook.AddAbonents("Jerry", "Jersey", "+1(438)5687999");
+        addressBook.AddAbonents("Mary", "Petty", "+1(437)9653875");
+     
+        addressBook.DeleteAbonents("Jerry", "Jersey", "+1(438)5687999");
+        addressBook.SeachAbonents("Mary");
+        addressBook.PrintAbonents();
 
         // Task №8 (Human)
         Human human = new Human(35);
         human.Weight = 100f;
 
         // Task №9
-        // IndividualSumInString();
+        int sumNumbers = textProcessing.IndividualSumInString(
+            "This is a Class 2 e-bike system limited to 20 mph with a throttle.");
+        Debug.Log(sumNumbers);
     }
 
 
@@ -104,33 +106,8 @@ public class Tasks : MonoBehaviour
     /// </summary>
     public float CalculateConeVolume(float radius, float height)
     {
-        return 3f / 4f * 3.1415f * (radius * radius) * height;
+        return 1f / 3f * 3.1415f * (radius * radius) * height;
     }
-    
-    /// <summary>
-    /// 1.1) Усовершенствовать задачу 1.
-    /// Написать метод для подсчета общего объёма списка конусов.
-    /// Добавить проверки на неправильные данные (как сможешь).
-    /// Входные данные:
-    /// Алгоритм:
-    /// Результат:
-    /// </summary>
-    // public void CalculateTotalConeVolume()
-    // {
-    // }
-    
-    /// <summary>
-    /// 1.2) Усовершенствовать задачу 1.1.
-    /// Написать метод для подсчета обьема фигуры,
-    /// в зависимости от ее типа (конус, цилиндр, шар, квадрат).
-    /// Добавить всевозможные проверки.
-    /// Входные данные: 
-    /// Алгоритм: 
-    /// Результат: 
-    /// </summary>
-    // public void CalculateFigureVolume()
-    // {
-    // }
 
 
     /// <summary>
@@ -153,13 +130,13 @@ public class Tasks : MonoBehaviour
     }
 
     // Option 2:  -MK +++
-    public void InvertArray2(int[] array2)
+    public void InvertArray2(int[] array)
     {
-        for (int i = 0; i < array2.Length / 2; i++)
+        for (int i = 0; i < array.Length / 2; i++)
         {
-            int value = array2[i];
-            array2[i] = array2[array2.Length - 1 - i];
-            array2[array2.Length - 1 - i] = value;
+            int value = array[i];
+            array[i] = array[array.Length - 1 - i];
+            array[array.Length - 1 - i] = value;
         }
     }
 
@@ -172,14 +149,14 @@ public class Tasks : MonoBehaviour
     /// Алгоритм: перевернуть массив чисел через while
     /// Результат: перевернутый массив
     /// </summary>
-    public void InvertArray3(int[] array3)
+    public void InvertArray3(int[] array)
     {
         int i = 0;
-        while (i < array3.Length / 2)
+        while (i < array.Length / 2)
         {
-            int value = array3[i];
-            array3[i] = array3[array3.Length - 1 - i];
-            array3[array3.Length - 1 - i] = value;
+            int value = array[i];
+            array[i] = array[array.Length - 1 - i];
+            array[array.Length - 1 - i] = value;
             i++;
         }
     }
@@ -191,7 +168,7 @@ public class Tasks : MonoBehaviour
     /// Алгоритм: Добавить буквы в список, буквам присвоить цифры, вывести в консоль
     /// Результат: в консоле буква равна соответствующей цифре
     /// </summary>      
-    public void RatingsListHandler(List<char> GradesList)
+    public void GradesListHandler(List<char> GradesList)
     {
         GradesList.Add('A');
         GradesList.Add('B');
@@ -229,7 +206,7 @@ public class Tasks : MonoBehaviour
     /// <summary>
     /// 4) Есть List, в котором хранятся яблоки, у каждого яблока свой вес.
     /// В начале кода просто добавить в лист 10 яблок с разным весом.
-    /// Потом нужно найти в этом листе яблоки, у которых вес < 100 грамм
+    /// Потом нужно найти в этом листе яблоки, у которых вес - 100 грамм
     /// и выкинуть их из листа
     /// Входные данные: список, яблоки, вес, количество
     /// Алгоритм: добавить, взвесить и удалить яблоки
@@ -259,92 +236,6 @@ public class Tasks : MonoBehaviour
             }
         }
     }
-
-
-    /// <summary>
-    /// 5) Написать метод, который принимает аргументом строку и возвращает количество гласных в ней
-    /// Входные данные: строка с текстом
-    /// Алгоритм: подсчет гласных в тексте
-    /// Результат: количество гласных в тексте
-    /// </summary>      
-    public int NumberVowelsStrings(string text)
-    {
-        int vowels = 0;
-
-        char[] vowelsArray = { 'a', 'e', 'i', 'o', 'u', 'y' };
-        foreach (var values in
-                 vowelsArray) //TODO illogical loop, you need to check your string for vowels, not vowels for string
-        {
-            for (int i = 0; i < text.Length; i++)
-            {
-                if (text[i] == values)
-                {
-                    vowels++;
-                }
-            }
-        }
-
-        return vowels;
-    }
-
-
-    /// <summary>
-    /// 6) Создать логику Адресной Книги      //TODO Incorrect and incomplete. Use OOP to define a class with all needed logic
-    /// Входные данные: список с именем, фамилией и номером телефона
-    /// Алгоритм: создать логику Адресной Книги
-    /// Результат: добавление новых абонентов, удаление абонентов, поиск абонента по имени, вывод информации о всех абонентах в книге
-    /// </summary>
-    public void AddAbonents(AddressBook addressBook)
-    {
-        addressBook.AbonentsList.Add(new AddressBook.Abonent("Jerry", "Jersey", "+1(438)5687999"));
-        addressBook.AbonentsList.Add(new AddressBook.Abonent("Tom", "Scott", "+1(289)3527877"));
-        addressBook.AbonentsList.Add(new AddressBook.Abonent("Jerry", "Jersey", "+1(438)5687999"));
-        addressBook.AbonentsList.Add(new AddressBook.Abonent("Mary", "Petty", "+1(437)9653875"));
-    }
-
-    public void DeleteAbonents(AddressBook addressBook)
-    {
-        for (int i = addressBook.AbonentsList.Count -1; i >= 0 ; i--)
-        {
-            AddressBook.Abonent abonent = addressBook.AbonentsList[i];
-            if (abonent.Name == "Jerry" && abonent.Surname == "Jersey" && abonent.PhoneNumber == "+1(438)5687999")
-            {
-                addressBook.AbonentsList.Remove(abonent);
-            }
-        }
-    }
-
-    // public void SearchAbonents(AddressBook addressBook, string searchAbonentName)
-    // {
-    //     for (int i = 0; i < addressBook.AbonentsList.Count; i++)
-    //     {
-    //         AddressBook.Abonent abonent = addressBook.AbonentsList[i]; //для проверки каждого абонента из списка 
-    //         if (abonent.Name == searchAbonentName)
-    //         {
-    //             Debug.Log($"{abonent.Name} {abonent.Surname}, {abonent.PhoneNumber}");
-    //         }
-    //     }
-    // }
     
-    public void AllAbonents(AddressBook addressBook)
-    {
-        foreach (var abonents in addressBook.AbonentsList)
-        {
-            Debug.Log($"{abonents.Name} {abonents.Surname}, {abonents.PhoneNumber}");
-        }
-    }
-
-
-    /// <summary>
-    /// 9) Написать метод, который принимает аргументом строку и возвращает сумму отдельных чисел в ней
-    /// Нужно найти все числа в строке и просумировать их. Просто каждое отдельное число, от 0 до 9
-    // - задача со звездой, любые числа (т,е, и 9 и 99 и 999 и так далее)
-    /// Входные данные: 
-    /// Алгоритм: 
-    /// Результат: 
-    /// </summary>
-    public void IndividualSumInString()
-    {
-    }
 }
 
