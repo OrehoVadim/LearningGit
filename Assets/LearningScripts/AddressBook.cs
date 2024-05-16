@@ -14,12 +14,12 @@ namespace LearningScripts
         /// Результат: добавление новых абонентов, удаление абонентов, поиск абонента по имени, вывод информации о всех абонентах в книге
         /// </summary>
         
-        public void AddAbonents(string name, string surname, string phoneNumber)
+        public void AddAbonent(string name, string surname, string phoneNumber)
         {
             AbonentsList.Add(new Abonent(name, surname, phoneNumber));
         }
         
-        public void DeleteAbonents(string name, string surname, string phoneNumber)
+        public void DeleteAbonent(string name, string surname, string phoneNumber)
         {
             for (int i = AbonentsList.Count -1; i >= 0 ; i--)
             {
@@ -31,17 +31,21 @@ namespace LearningScripts
             }
         }
 
-        public void SeachAbonents(string name)
+        public Abonent SeachAbonent(string name)
         {
             for (int i = 0; i < AbonentsList.Count; i++)
             {
                 Abonent abonent = AbonentsList[i];
                 if (abonent.Name == name)
+                {
                     Debug.Log(abonent.Name + abonent.Surname + abonent.PhoneNumber);
+                    return abonent;
+                }
             }
+            return null;
         }
         
-        public void PrintAbonents()
+        public void PrintAbonent()
         {
             foreach (var abonents in AbonentsList)
             {
@@ -52,9 +56,11 @@ namespace LearningScripts
     
     public class Abonent
     {
-        public string Name; // поле (переменная) будет хранить имя абонента
-        public string Surname;
-        public string PhoneNumber;
+        public string Name { get; } // поле (переменная) будет хранить имя абонента
+        public string Surname { get; }
+        public string PhoneNumber { get; }
+
+        // private const string test = "test";
 
 
         public Abonent(string name, string surname, string phoneNumber) // Конструктор инициализирует объект, принимает три параметра, использует параметры для установки значений полей 

@@ -2,84 +2,92 @@ using System;
 
 namespace LearningScripts
 {
-    public class CalculationFigureVolume
+    public abstract class Figure // абстрактный контракт взаимодействия - далее можно переиспользовать в наследниках (объект не создается)
     {
         /// <summary>
-        /// Усовершенствовать задачу 1.1.
+        /// 1.2) Усовершенствовать задачу 1.1.
         /// Написать метод для подсчета обьема фигуры,
         /// в зависимости от ее типа (конус, цилиндр, шар, квадрат).
         /// Добавить всевозможные проверки.
         /// Входные данные: конус (радиус, высота), цилиндр(), шар(), квадрат()
         /// Алгоритм: создать метод с формулами для подсчета объёма указанных фигур
         /// Результат: объём указанных фигур
-        /// </summary>
-
-        public double CalculateConeVolume(double Radius, double Height)
+        /// </summary> 
+        public float CalculateFigureVolume(Figure figure)
         {
-            return 1.0 / 3.0 * Math.PI * (Radius * Radius) * Height;
+            return figure.CalculateVolume();
         }
-
-        public double CalculateCylinderVolume(double Radius, double Height)
+        
+        public virtual float CalculateVolume() // метод, который можно переопределять - новая реализация (Полиморфизм)
         {
-            return Math.PI * (Radius * Radius) * Height;
+            return 0;
         }
-
-        public double CalculateLayerVolume(double Radius, double Height)
-        {
-            return (3.0 / 4.0 * Math.PI * (Radius * Radius * Radius));
-        }
-
-        public double CalculateCubeVolume(double Length)
-        {
-            return Length * Length * Length;
-        }
-
     }
 
-    public class ConeFigure
+    public class ConeFigure : Figure
     {
-        public double Radius;
-        public double Height;
+        public float Radius { get; private set; } // свойства (аксессоров get и set) (Инкапсуляция данных)
+        public float Height { get; private set; } // инкапсуляция (get - извлечение данных; set - присвоение данных) (Инкапсуляция данных)
 
-        public ConeFigure(double radius, double height)
+        public ConeFigure(float radius, float height)
+        {
+            Radius = radius;
+            Height = height; 
+        }
+        
+        public override float CalculateVolume() // переопределенный метод - новая реализация (Полиморфизм - переопределение методов)
+        {
+            return 1f / 3f * (float)Math.PI * (Radius * Radius) * Height;
+        }
+    }
+
+    public class CylinderFigure : Figure
+    {
+        public float Radius { get; private set; }
+        public float Height { get; private set; }
+        
+        public CylinderFigure(float radius, float height)
         {
             Radius = radius;
             Height = height;
         }
+        
+        public override float CalculateVolume()
+        {
+            return (float)Math.PI * (Radius * Radius) * Height;
+        }
     }
 
-    public class CylinderFigure
+    public class BallFigure : Figure
     {
-        public double Radius { get; private set; }
-        public double Height { get; private set; }
+        public float Radius { get; private set; }
+        public float Height { get; private set; }
 
-        public CylinderFigure(double radius, double height)
+        public BallFigure(float radius, float height)
         {
             Radius = radius;
             Height = height;
         }
-    }
-
-    public class LayerFigure
-    {
-        public double Radius { get; private set; }
-        public double Height { get; private set; }
-
-        public LayerFigure(double radius, double height)
+        
+        public override float CalculateVolume()
         {
-            Radius = radius;
-            Height = height;
+            return (3f / 4f * (float)Math.PI * (Radius * Radius) * Height);
         }
     }
 
-    public class CubeFigure
-    {
-        public double Length { get; private set; }
+    public class CubeFigure : Figure
 
-        public CubeFigure(double length)
+    {
+        public float Length { get; private set; }
+
+        public CubeFigure(float length)
         {
             Length = length;
         }
+
+        public override float CalculateVolume()
+        {
+            return Length * Length * Length;
+        }
     }
-    
 }
