@@ -72,11 +72,9 @@ public class Tasks : MonoBehaviour
         // // Task №3.1
         GradesDictionary gradesDictionary = new GradesDictionary();
             
-            gradesDictionary.AddGrades('5','A');
-            gradesDictionary.AddGrades('4','B');
-            gradesDictionary.AddGrades('3','C');
-            gradesDictionary.AddGrades('2','D');
-            gradesDictionary.AddGrades('1','E');
+            gradesDictionary.AddGrades('A', 3);
+            gradesDictionary.AddGrades('A', 3);
+            gradesDictionary.AddGrades('A', 3);
             
             gradesDictionary.DictionaryOutput();
         

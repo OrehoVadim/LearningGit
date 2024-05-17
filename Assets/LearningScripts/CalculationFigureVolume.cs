@@ -13,18 +13,22 @@ namespace LearningScripts
         /// Алгоритм: создать метод с формулами для подсчета объёма указанных фигур
         /// Результат: объём указанных фигур
         /// </summary> 
-        public float CalculateFigureVolume(Figure figure)
+        public static float CalculateFigureVolume(Figure figure) // принимает объект типа Figure и вызывает метод CalculateVolume для расчета объема фигуры
         {
             return figure.CalculateVolume();
         }
         
-        public virtual float CalculateVolume() // метод, который можно переопределять - новая реализация (Полиморфизм)
+        public virtual float CalculateVolume() // метод, который нужно переопределять в каждом классе-наследнике - новая реализация (Полиморфизм)
         {
             return 0;
         }
+        
+        // public void Test()
+        // {
+        // }
     }
 
-    public class ConeFigure : Figure
+    public class ConeFigure : Figure // класс-наследник реализуют метод CalculateVolume
     {
         public float Radius { get; private set; } // свойства (аксессоров get и set) (Инкапсуляция данных)
         public float Height { get; private set; } // инкапсуляция (get - извлечение данных; set - присвоение данных) (Инкапсуляция данных)
