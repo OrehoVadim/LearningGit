@@ -13,7 +13,7 @@ namespace LearningScripts
         /// Алгоритм: Добавить буквы в список, буквам присвоить цифры, вывести в консоль
         /// Результат: в консоле буква равна соответствующей цифре
         /// </summary>
-        public void AddGrade(char grade)
+        public void AssignmentGrade(char grade)
         {
             GradesList.Add(grade);
         }

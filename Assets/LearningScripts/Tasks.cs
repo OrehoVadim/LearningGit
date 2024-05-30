@@ -29,18 +29,6 @@ public class Tasks : MonoBehaviour
         float height = cone.Height;
         var volume = CalculateConeVolume(radius, height);
         Debug.Log(volume);
-
-        
-        // Task №1.2
-        Figure figure = new ConeFigure(6, 6); // экземпляр класса Figure (Наследование)
-        Debug.Log(figure.CalculateVolume());
-        Figure figure2 = new CylinderFigure(6, 6);
-        Debug.Log(figure2.CalculateVolume());
-        Figure figure3 = new BallFigure(6, 6);
-        Debug.Log(figure3.CalculateVolume());
-        Figure figure4 = new CubeFigure(6);
-        Debug.Log(figure4.CalculateVolume());
-        
         
         // Task №2, Option 1
         int[] arrayNew = InvertArray(Arrays.Array); //TODO return an array, use proper naming
@@ -59,24 +47,16 @@ public class Tasks : MonoBehaviour
 
         // Task №3
         Assessment assessment = new Assessment();
-        assessment.AddGrade('A');
-        assessment.AddGrade('B');
-        assessment.AddGrade('C');
-        assessment.AddGrade('D');
-        assessment.AddGrade('E');
-        assessment.AddGrade('C');
-        assessment.AddGrade('A');
-        assessment.AddGrade('E');
+        assessment.AssignmentGrade('A');
+        assessment.AssignmentGrade('B');
+        assessment.AssignmentGrade('C');
+        assessment.AssignmentGrade('D');
+        assessment.AssignmentGrade('E');
+        assessment.AssignmentGrade('C');
+        assessment.AssignmentGrade('A');
+        assessment.AssignmentGrade('E');
         assessment.AssigningValueEstimate();
         
-        // // Task №3.1
-        GradesDictionary gradesDictionary = new GradesDictionary();
-            
-            gradesDictionary.AddGrades('A', 3);
-            gradesDictionary.AddGrades('A', 3);
-            gradesDictionary.AddGrades('A', 3);
-            
-            gradesDictionary.DictionaryOutput();
         
         // Task №4, AppleList                    //TODO Remove arguments initialization outside of the method
         AppleList appleList = new AppleList(); //Создал экземпляр класса AppleList
@@ -125,8 +105,8 @@ public class Tasks : MonoBehaviour
     {
         return 1f / 3f * 3.1415f * (radius * radius) * height;
     }
-
-
+    
+    
     /// <summary>
     /// 2) Написать метод, который принимает аргументом массив чисел и возвращает “перевернутый массив”, +++
     /// то есть массив такого же размера, но с числами в обратном порядке.

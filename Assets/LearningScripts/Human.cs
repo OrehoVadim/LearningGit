@@ -1,6 +1,6 @@
 namespace LearningScripts
 {
-    public class Human
+    public partial class Human
     {
         public int Age { get; private set; }
         public float Weight;
