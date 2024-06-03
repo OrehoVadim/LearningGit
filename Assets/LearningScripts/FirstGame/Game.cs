@@ -1,182 +1,171 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace LearningScripts.FirstGame
 {
-    public class Game : MonoBehaviour
+    // 10) У нас есть один игрок
+    //     На него постоянно идут враги, враги разного типа: бот, танк, самолет.
+    //     Игрок может стрелять по врагам и наносить им некоторый урон
+    //     Бот ничем не выделяется, у него есть только здоровье. 
+    //     У танка есть броня, Которая уменьшает прямо урон на количество очков брони.
+    //     У самолета есть 33 процента шанс увернуться от урона и не получить его вообще.
+    //     Брони у самолета нет.
+
+    // 10.1) Создаем класс, который раз в x секунд создает врага
+    //       - x выбирается случайно от 1 до 3
+    //       - Враг начинает двигаться по прямой всегда в одном направлении
+    //       - Когда враг проходит x метров, он самоуничтожается
+    //       Добавляем логику “смерти”. При смерти обьект врага уничтожается. Смерть наступает, когда заканчивается HP
+
+    // 10.2) На пути врага куда-нибудь ставим обьект “игрока”, он находится в одном месте и не двигается.
+    //       Игрок постоянно “ищет” врагов. Как только враг найдет, 
+    //       игрок поворачивается в сторону найденного врага и “смотрит” на него до тех пор, 
+    //       пока враг не умрет или не самоуничтожится, после этого игрок фокусируется на новом враге.
+    //       По нажатию на кнопку игрок “стреляет” во врага, на котором он сфокусирован, нанося ему урон.
+    
+    // 10.3) Добавляем индикатор здоровья врагам. Можно сделать любым способом, какой захочется.
+    //       Добавляем возможность настраивать здоровье противников, их скорость и урон игрока из Юнити.
+    //       Добавляем индикатор очков, игрок зарабывает 1 очко за убийство врага
+    //       Игра заканчивается через 60 секунд, появляется окно с поздравлением о победе, если мы набрали больше 10 очков или проигрыше, если нет.
+    //       Добавляем любую анимацию/систему частиц/индикацию выстрела игрока.
+
+    
+    public class Game : MonoBehaviour // класс управляющий игровой логикой
     {
-        public void Awake()
+        [SerializeField] private Enemy _enemyPrefab; // Префаб врага, который будет создаваться
+        [SerializeField] private Player _playerPrefab; // Префаб игрока, экземпляр объекта с настройками и компонентами
+        
+        private float _time = 0.0f; // Переменная для отслеживания времени
+        public float InterpolationPeriod = 3; // Переменная интервала между созданиями врагов
+
+        public void Start() // Инициализация объекта Player в момент его активации
         {
-            List<Enemy.Bot> bots = new List<Enemy.Bot>();
-            bots.Add(new Enemy.Bot(100, 10));
-            List<Enemy.Tank> tanks = new List<Enemy.Tank>();
-            tanks.Add(new Enemy.Tank(100, 100, 30));
-            List<Enemy.AirPlane> airPlanes = new List<Enemy.AirPlane>();
-            airPlanes.Add(new Enemy.AirPlane(100, 20));
+            _playerPrefab.transform.localPosition = new Vector3(0f, 0f, 0f); // Позиция игрока на поле (transform - компонент объекта с позицией, поворотом и масштабом)
             
-            // bots[0].Hp = (bots[0].Hp);
-            // Debug.Log(bots[0].Hp);
-            //
-            // tanks[0].Hp = (tanks[0].Hp);
-            // // tanks[0].TankDamage(player.Damage);
-            // Debug.Log(tanks[0].Armor);
-            //
-            // airPlanes[0].Hp = (airPlanes[0].Hp);
-            // Debug.Log(airPlanes[0].Hp);
         }
-    }
-    // У нас есть один игрок
-    // На него постоянно идут враги, враги разного типа: бот, танк, самолет.
-    // Игрок может стрелять по врагам и наносить им некоторый урон
-    // Бот ничем не выделяется, у него есть только здоровье. 
-    // У танка есть броня, Которая уменьшает прямо урон на количество очков брони.
-    // У самолета есть 33 процента шанс увернуться от урона и не получить его вообще.
-    // Брони у самолета нет.
-    
-    // public abstract class Enemy // абстрактный клас врагов
-    // {
-    //     
-    // }
-    
-    // public class EnemyCreator
-    // {
-    //     
-    // }
-    
-    // Создать абстрактный класс "Стрелять" с виртуальным методом "Выстрел" и полем урон
-    public abstract class ObjectFeatures //Особенности объектов
-    {
-        // Определять тип обекта и передавать орудие которое он использует в метод для вычисления урона
-        public abstract void ObjectDamage(int weaponDamage);
         
-        // Наносить урон всем
-        // Использовать разное орудие с разним уроном, в зависимости от объекта
-        public virtual void Shoot(int weaponDamage)
+        public void Update() // Обновление ~ вызывается каждый кадр
         {
-            // Dictionary<string, int> gameObject = new Dictionary<string, int>();
-            // gameObject.Add("Player", 10);
-            // gameObject.Add("Bot", 10);
-            // gameObject.Add("Tank", 20);
-            // gameObject.Add("AirPlane", 30);
+            // if (Player.EnemyDetectionRadius <= _enemyPrefab.transform.position
+            // {
+            //     
+            // }
 
-            foreach (var value in Enemy.Enemies)
+            // _enemyPrefab.transform.position = Random.Range(new Vector3(Random.value, Random.value, Random.value));
+            
+            _time += Time.deltaTime; // Увеличить время
+
+            if (_time >= InterpolationPeriod) // Если прошло достаточно времени ...
             {
-                Debug.Log(value);
-                // if (value.GetType() == typeof(Bot))
-                // {
-                //     value = weaponDamage 
-                // }
+                _time = 0; // Сбрасывание времени
+                Instantiate(_enemyPrefab); // Создание нового врага на основе префаба
+                // execute block of code here
             }
-        }
-        
-        // public abstract void Movement();
-    }
-    
-    public class Player : ObjectFeatures
-    {
-        private int Hp { get; set; }
-        private int GunDamage { get; set; }
-
-        public Player(int hp, int gunDamage)
-        {
-            Hp = 100;
-            GunDamage = 10;
-        }
-        
-        public override void ObjectDamage(int weaponDamage){}
-        
-        
-        public  int Shoot(int weaponDamage)
-        {
-            return Hp -= weaponDamage;
         }
     }
 
-    
-    public class Enemy // клас для всех врагов
+    public class Player : MonoBehaviour // Класс, представляющий игрока
     {
-        public static List<Enemy> Enemies = new List<Enemy>();
+        public int PlayerHP { get; protected set; }
+        public int PlayerArmor;
+        public int DamageFromPlayer; // Урон, наносимый игроком
+        public float EnemyDetectionRadius = 20f;
 
-        public void AddEnemy(Enemy enemy)
+        public void PlayerShoot(Enemy enemy) // Метод, вызываемый при выстреле игрока (Player)
         {
-            Enemies.Add(enemy);
-            Debug.Log(Enemies);
+            enemy.GetDamageFromPlayer(DamageFromPlayer); // Метод нанесения урона врагу (Enemy)
         }
 
-        public void CheckEnemy()
+        public void GetDamageFromEnemy(int damageFromEnemy) // Метод для получения урона гроком (Player)
         {
-            foreach (var enemy in Enemies)
+            if (PlayerArmor > 0) // Если у игрока есть броня
             {
-                Debug.Log(enemy);
+                damageFromEnemy -= PlayerArmor; // Уменьшить броню на количество урона 
+            }
+
+            PlayerHP -= damageFromEnemy; // Нанести урон здоровью игрока
+        }
+    }
+
+    public class Enemy : MonoBehaviour // Класс, представляющий врага (Enemy)
+    {
+        public Vector3 InitialPosition; // Начальная позиция врага (Enemy)
+        public float Speed; // Скорость движения врага
+        public int DamageFromEnemy; // Урон, наносимый врагом
+
+        public int EnemyHP { get; protected set; }
+        public int EnemyArmor;
+        public float ChanceEnemyToEvade; // Шанс врага увернуться
+
+        public class EnemiesTypes
+        {
+            public List<Enemy> EnemiesOfDifferentTypes = new List<Enemy>(); // Динамический список врагов разного типа
+            
+            public class Bot // Класс, представляющий врага типа Bot
+            {
+                public int Hp = 100;
+                public int Damage = 10;
+                public float Speed = 5f;
+            }
+
+            public class Tank // Класс, представляющий врага типа Tank
+            {
+                public int Hp = 100;
+                public int Armor = 100;
+                public int Damage = 30;
+                public float Speed = 30f;
+            }
+
+            public class AirPlane // Класс, представляющий врага типа AirPlane
+            {
+                public int Hp = 100;
+                public int Damage = 20;
+                public float Speed = 50f;
             }
         }
 
-        public class Bot : ObjectFeatures
+        public void Update() 
         {
-            private int Hp { get; set; } 
-            private int GunDamage { get; set; }
-
-            public Bot(int hp, int gunDamage)
-            {
-                Hp = 100;
-                GunDamage = 20;
-            }
-
-            public override void ObjectDamage(int weaponDamage)
-            {
-                Hp -= weaponDamage;
-            }
-
-            public void Movement()
-            {
-            }
+            transform.Translate(Vector3.forward * (Time.deltaTime * Speed));  // Перемещение врага вперед с заданной скоростью
+        }
+        
+        public void EnemyShoot(Player player) // Метод, вызываемый при выстреле врага (Enemy)
+        {
+            player.GetDamageFromEnemy(DamageFromEnemy); // Метод нанесения урона Игроку (Player)
         }
 
-        public class Tank : ObjectFeatures
+        public void GetDamageFromPlayer(int damageFromPlayer) // Метод для получения урона врагом (Enemy)
         {
-            private int Hp { get; set; }
-            private int Armor{ get; set; }
-            private int CannonDamage { get; set; }
-
-            public Tank(int hp, int armor, int cannonDamage)
+            int random = Random.Range(1, 101);
+            
+            if (ChanceEnemyToEvade <= 0)    // Проверить возможность уворота врага (и если шанс уворота не положителен)
             {
-                Hp = 100;
-                Armor = 100;
-                CannonDamage = 30;
-            }
-
-            public override void ObjectDamage(int weaponDamage)
-            {
-                if (Armor >= 0)
+                if (random > ChanceEnemyToEvade) // Проверить случайное число (от 1 до 100)
                 {
-                    Armor -= weaponDamage;
+                    return; // Враг увернулся от атаки
+                }
+            }
+
+            if (random > 33)
+            {
+                if (EnemyArmor > 0) // Если у врага есть броня
+                {
+                    EnemyArmor -= damageFromPlayer; // Уменьшить броню на количество урона 
                 }
                 else
                 {
-                    Hp -= weaponDamage;
+                    EnemyHP -= damageFromPlayer; // Нанести урон здоровью врага 
                 }
             }
-        }
 
-        public class AirPlane : ObjectFeatures
-        {
-            private int Hp { get; set; }
-            private int MachineGunDamage { get; set; }
-
-            public AirPlane(int hp, int machineGunDamage)
+            if (EnemyArmor > 0) // Если у врага есть броня
             {
-                Hp = 100;
-                MachineGunDamage = 20;
+                damageFromPlayer -= EnemyArmor; // Уменьшить броню на количество урона 
             }
 
-            public override void ObjectDamage(int weaponDamage)
-            {
-                int random = Random.Range(1, 101);
-                if (random > 33)
-                {
-                    Hp -= weaponDamage;
-                }
-            }
+            EnemyHP -= damageFromPlayer; // Нанести урон здоровью врага 
         }
     }
 }

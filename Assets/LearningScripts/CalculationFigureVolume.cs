@@ -47,43 +47,6 @@ namespace LearningScripts
     {
         public static float CalculateFigureVolume(Figure figure) // принимает объект типа Figure и вызывает метод CalculateVolume для расчета объема фигуры
         {
-            // проверка на равно null, отрицательное значение
-            // if (figure == null)
-            // {
-            //     Debug.Log("Figure cannot be null!");
-            // }
-            // if (figure is ConeFigure) // проверка на тип фигуры
-            // {
-            //     ConeFigure cone = (ConeFigure) figure; // приведение типа объекта figure к типу ConeFigure (со свойствам и методам)
-            //     if (cone.Radius <= 0 || cone.Height <= 0)   
-            //     {
-            //         Debug.Log("\"Cone\" radius and height must be above than zero!");
-            //     }
-            // }
-            // if (figure is CylinderFigure) 
-            // {
-            //     CylinderFigure cylinder = (CylinderFigure) figure;
-            //     if (cylinder.Radius <= 0 || cylinder.Height <= 0)   
-            //     {
-            //         Debug.Log("\"Cylinder\" - radius and height must be above than zero!");
-            //     }
-            // }
-            // if (figure is BallFigure)
-            // {
-            //     BallFigure ball = (BallFigure) figure;
-            //     if (ball.Radius <= 0 || ball.Height <= 0)   
-            //     {
-            //         Debug.Log("\"Ball\" - radius and height must be above than zero!");
-            //     }
-            // }
-            // if (figure is CubeFigure)
-            // {
-            //     CubeFigure cube = (CubeFigure)figure;
-            //     if (cube.Length <= 0)   
-            //     {
-            //         Debug.Log("\"Cube\" - radius and height must be above than zero!");
-            //     }
-            // }
             return figure.CalculateVolume();
         }
     }

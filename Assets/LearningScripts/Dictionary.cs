@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -22,34 +23,23 @@ namespace LearningScripts
 
         public void Awake()
         {
-            GradesDictionary gradesDictionary = new GradesDictionary();
+            GradesDictionary2 gradesDictionary2 = new GradesDictionary2();
 
-            gradesDictionary.AddGrade("First", 'A');
-            gradesDictionary.AddGrade("Second", 'D');
-            gradesDictionary.AddGrade("Third", 'A');
-            gradesDictionary.AddGrade("Fourth", 'B');
-            gradesDictionary.AddGrade("Fifth", 'j');
-            gradesDictionary.AddGrade("Sixth", 'C');
-            gradesDictionary.AddGrade("Seventh", 'E');
-            gradesDictionary.AddGrade("Eighth", 'A');
-            gradesDictionary.AddGrade("Ninth", 'D');
-            gradesDictionary.AddGrade("Tenth", 'D');
+            gradesDictionary2.AddGrade("First", 'A');
+            gradesDictionary2.AddGrade("Second", 'D');
+            gradesDictionary2.AddGrade("Third", 'A');
+            gradesDictionary2.AddGrade("Fourth", 'B');
+            gradesDictionary2.AddGrade("Fifth", 'j');
+            gradesDictionary2.AddGrade("Sixth", 'C');
+            gradesDictionary2.AddGrade("Seventh", 'E');
+            gradesDictionary2.AddGrade("Eighth", 'A');
+            gradesDictionary2.AddGrade("Ninth", 'D');
+            gradesDictionary2.AddGrade("Tenth", 'D');
 
-            gradesDictionary.ProcessingAndOutputGrades();
-            gradesDictionary.DataEntryVerification();
+            gradesDictionary2.ProcessingAndOutputGrades();
+            gradesDictionary2.DataEntryVerification();
 
             // gradesDictionary.AddGrade('10', 'C'); ???
-
-            // gradesDictionary.AddGrade('A');
-            // gradesDictionary.AddGrade('D');
-            // gradesDictionary.AddGrade('A');
-            // gradesDictionary.AddGrade('B');
-            // gradesDictionary.AddGrade('j');
-            // gradesDictionary.AddGrade('C');
-            // gradesDictionary.AddGrade('E');
-            // gradesDictionary.AddGrade('E');
-            // gradesDictionary.AddGrade('E');
-            // gradesDictionary.AddGrade('5');
 
             LearningDictionary learningDictionary = new LearningDictionary();
             learningDictionary.Dict[3] = "Three";
@@ -65,15 +55,15 @@ namespace LearningScripts
             phoneBook.AddAbonent("+3(600)2823456", new Contact("Kate", "Jones"));
             phoneBook.PrintAbonent();
 
-            // PhoneBook2 phoneBook2 = new PhoneBook2();
-            // phoneBook2.AddAbonent("+1(300)2536223)", "Romeo", "Sanchez");
-            // phoneBook.PrintAbonent();  
+            PhoneBook2 phoneBook2 = new PhoneBook2();
+            phoneBook2.AddAbonent("+1(300)2536223)", "Romeo", "Sanchez");
+            phoneBook.PrintAbonent();  
         }
     }
 
 
 
-    public class GradesDictionary
+    public class GradesDictionary2
     {
         Dictionary<char, int> GivenValues = new()
         {
@@ -109,7 +99,7 @@ namespace LearningScripts
             }
         }
 
-        public void DataEntryVerification()
+        public AddressBook DataEntryVerification()
         {
             foreach (KeyValuePair<string, char> pair in ProcessedGrades)
             {
@@ -120,117 +110,9 @@ namespace LearningScripts
                     Debug.Log($"The grade letter ( {pair.Value} ) is in the wrong format");
                 }
             }
+            return new AddressBook();
         }
     }
-
-    // private Dictionary<char, int> Assessments = new Dictionary<char,int>();
-    //
-    // public void AddGrade(char key) // добавление данных в словарь
-    // {
-    //     Assessments[key] = key;
-    // }
-    //
-    // public void ProcessingAndOutputGrades()
-    // {
-    //     
-    //     foreach (var key in Assessments.Keys)
-    //     {
-    //         if (GivenValues.ContainsKey(key))
-    //         {
-    //             Debug.Log($"{key} = {GivenValues[key]}");
-    //         }
-    //         else
-    //         {
-    //             Debug.Log($"incorrect rating input - {key}");
-    //         }
-    //     }
-    // }
-
-    // public class GradesDictionary
-    // {
-    //     public Dictionary<char, int> GivenKeyValues = new()
-    //     {
-    //         { 'A', 5 },
-    //         { 'B', 4 },
-    //         { 'C', 3 },
-    //         { 'D', 2 },
-    //         { 'E', 1 }
-    //     };
-    //
-    //     public Dictionary<char, int> DictionaryWithGrades = new ();
-    //     
-    //     public void AddGrade(char key) // добавление данных в словарь
-    //     {
-    //         if (GivenKeyValues.ContainsKey(key))
-    //         {
-    //             DictionaryWithGrades[key] = GivenKeyValues[key]; 
-    //         }
-    //         else
-    //         {
-    //             Debug.Log($"Grade {key} not found");
-    //         }
-    //     }
-    //     
-    //     public void DictionaryOutput()
-    //     {
-    //         foreach (var key in DictionaryWithGrades)
-    //         {
-    //             Debug.Log(key.Key + " = " + key.Value);
-    //         }
-    //     }
-    //
-    //     public void Assessment(List<char> ratings)
-    //     {
-    //         foreach (var letter in ratings)
-    //         {
-    //             var dictionaryWithGrade = DictionaryWithGrades[letter];
-    //             Debug.Log(dictionaryWithGrade);
-    //         }
-    //     }
-    //     
-    //     public void Test()
-    //     {
-    // 1) Наличие ключа 'A' в словаре:
-    //Debug.Log(DictionaryWithGrades.ContainsKey('A') ? "Ключ пресутствует" : "Введите Ключ пресутствует");
-    // if (DictionaryWithGrades.ContainsKey('A'))
-    // {
-    //     Debug.Log("Ключ пресутствует");
-    // }
-    // else
-    // {
-    //     Debug.Log("Введите Ключ пресутствует");
-    // }
-
-    // 2) Соответствие ключей типу char
-    // if (DictionaryWithGrades[key].GetType() == char)
-    // {
-    //     Debug.Log("Ключ типа char");
-    // }
-    // else
-    // {
-    //     Debug.Log("Неверный тип ключа");
-    // }
-
-    // 3) Проверка на соответствие ключа и значения нужнім типам (key == char && value == int), если нет то удалить
-    // if (DictionaryWithGrades['A'].GetType() == typeof(char) &&DictionaryWithGrades(5).GetType() == typeof(char))
-    // {
-    //     Debug.Log("Типы ключей и значений соответствуют стандарту");
-    // }
-    // else
-    // {
-    //     Debug.Log("Неверный тип ключа");
-    //     DictionaryWithGrades.Remove();
-    // }
-
-    // 4) Наличие данныз в Dictionary
-    // if (DictionaryWithGrades.Count == 0)
-    // {
-    //     Debug.Log("Dictionary без данных");
-    // }
-
-    // 5) Какие данные хранит Dictionary
-    // }
-    // }
 
     public class LearningDictionary
     {
@@ -287,16 +169,125 @@ namespace LearningScripts
     }
 
 
-    // public class PhoneBook2 : Dictionary<string, Contact> // PhoneBook2 наследуется от Dictionary
-    // {
-        // public void AddAbonent(string phoneNumber, string fName, string lName) // новая перегрузка метода Add
-        // {
+    public class PhoneBook2 : Dictionary<string, Contact> // PhoneBook2 наследуется от Dictionary
+    {
+        public void AddAbonent(string phoneNumber, string fName, string lName) // новая перегрузка метода Add
+        {
             // this[phoneNumber] = new Contact()
             // {
-                // FirstName = fName,
-                // LastName = lName
+            //     FirstName = fName,
+            //     LastName = lName
             // };
-        // }
-    // }
+        }
+    }
     
+    public class GivenValues
+    {
+        Dictionary<char, int> Assessments = new Dictionary<char,int>();
+         public void AddGrade(char key) // добавление данных в словарь
+         {
+             Assessments[key] = key;
+         }
+        
+         public void ProcessingAndOutputGrades()
+         {
+             // foreach (var key in Assessments.Keys)
+             // {
+             //     if (GivenValues.ContainsKey(key))
+             //     {
+             //         Debug.Log($"{key} = {GivenValues[key]}");
+             //     }
+             //     else
+             //     {
+             //         Debug.Log($"incorrect rating input - {key}");
+             //     }
+             // }
+         }
+     }
+
+     public class GradesDictionary
+     {
+         public Dictionary<char, int> GivenKeyValues = new()
+         {
+             { 'A', 5 },
+             { 'B', 4 },
+             { 'C', 3 },
+             { 'D', 2 },
+             { 'E', 1 }
+         };
+    
+         public Dictionary<char, int> DictionaryWithGrades = new ();
+         
+         public void AddGrade(char key) // добавление данных в словарь
+         {
+             if (GivenKeyValues.ContainsKey(key))
+             {
+                 DictionaryWithGrades[key] = GivenKeyValues[key]; 
+             }
+             else
+             {
+                 Debug.Log($"Grade {key} not found");
+             }
+         }
+         
+         public void DictionaryOutput()
+         {
+             foreach (var key in DictionaryWithGrades)
+             {
+                 Debug.Log(key.Key + " = " + key.Value);
+             }
+         }
+    
+         public void Assessment(List<char> ratings)
+         {
+             foreach (var letter in ratings)
+             {
+                 var dictionaryWithGrade = DictionaryWithGrades[letter];
+                 Debug.Log(dictionaryWithGrade);
+             }
+         }
+         
+         public void Test()
+         {
+     // 1) Наличие ключа 'A' в словаре:
+    Debug.Log(DictionaryWithGrades.ContainsKey('A') ? "Ключ пресутствует" : "Введите Ключ пресутствует");
+     if (DictionaryWithGrades.ContainsKey('A'))
+     {
+         Debug.Log("Ключ пресутствует");
+     }
+     else
+     {
+         Debug.Log("Введите Ключ пресутствует");
+     }
+
+     // 2) Соответствие ключей типу char
+     // if (DictionaryWithGrades[key].GetType() == char)
+     // {
+     //     Debug.Log("Ключ типа char");
+     // }
+     // else
+     // {
+     //     Debug.Log("Неверный тип ключа");
+     // }
+
+     // 3) Проверка на соответствие ключа и значения нужнім типам (key == char && value == int), если нет то удалить
+     if (DictionaryWithGrades['A'].GetType() == typeof(char) /*&& DictionaryWithGrades(5).GetType() == typeof(char)*/)
+     {
+         Debug.Log("Типы ключей и значений соответствуют стандарту");
+     }
+     else
+     {
+         Debug.Log("Неверный тип ключа");
+         //DictionaryWithGrades.Remove();
+     }
+
+     // 4) Наличие данныз в Dictionary
+     if (DictionaryWithGrades.Count == 0)
+     {
+         Debug.Log("Dictionary без данных");
+     }
+
+     // 5) Какие данные хранит Dictionary
+     }
+     }
 }

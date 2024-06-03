@@ -112,12 +112,12 @@ namespace LearningScripts
             Debug.Log($"{_model} - {_color} color - MaxSpeed ({_maxSpeed} km/h)");
         }
 
-        // public void Initialize(string color, string model, int maxSpeed) // инициализирующий метод
-        // {
-        //     _color = color;
-        //     _model = model;
-        //     _maxSpeed = maxSpeed;
-        // }
+        public void Initialize(string color, string model, int maxSpeed) // инициализирующий метод
+        {
+            _color = color;
+            _model = model;
+            _maxSpeed = maxSpeed;
+        }
     }
 
     // DerivedChild
