@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117504f62eaef429e95144141b42919a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 7
+  hp: 8
   armor: 0
   chanceToEvade: 33
   speed: 1.25

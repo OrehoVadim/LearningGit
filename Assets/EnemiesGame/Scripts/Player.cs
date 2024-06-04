@@ -16,7 +16,7 @@ namespace EnemiesGame
         {
             if (_enemy == null)
             {
-                _enemy = FindNewTargetByDistance();
+                _enemy = FindNewTargetByColliders();
             }
             else
             {
@@ -60,10 +60,13 @@ namespace EnemiesGame
             foreach (var hitCollider in hitColliders)
             {
                 var enemy = hitCollider.GetComponent<Enemy>();
-                var distance = Vector3.Distance(transform.position, enemy.transform.position);
-                if (distance <= _enemyDetectionRadius)
+                if (enemy != null)
                 {
-                    return enemy;
+                    var distance = Vector3.Distance(transform.position, enemy.transform.position);
+                    if (distance <= _enemyDetectionRadius)
+                    {
+                        return enemy;
+                    }  
                 }
             }
 
