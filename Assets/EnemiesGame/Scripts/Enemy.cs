@@ -10,14 +10,7 @@ namespace EnemiesGame
         [SerializeField] private float speed; // Скорость движения врага
 
         private bool _evaded;
-        
-        public bool IsDead2 => (hp <= 0);
-        
-        public bool IsDead
-        {
-            get { return hp <= 0; }
-        }
-        
+
         public void Update() 
         {
             transform.Translate(Vector3.down * (Time.deltaTime * speed));  // Перемещение врага вперед с заданной скоростью
@@ -48,6 +41,11 @@ namespace EnemiesGame
             }
 
             hp -= damage; // Нанести урон здоровью врага 
+
+            if (hp <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
