@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace EnemiesGame
 {
@@ -8,8 +10,17 @@ namespace EnemiesGame
         [SerializeField] private int armor;
         [SerializeField] private float chanceToEvade = 33; // Шанс врага увернуться
         [SerializeField] private float speed; // Скорость движения врага
+        [SerializeField] private SpriteRenderer _health; // Скорость движения врага
 
         private bool _evaded;
+        private float _maxHp;
+        private float _initialHealthBarWidth;
+
+        public void Awake()
+        {
+            _maxHp = hp;
+            _initialHealthBarWidth = _health.size.x;
+        }
 
         public void Update() 
         {
@@ -25,10 +36,10 @@ namespace EnemiesGame
         public void GetDamage(int damage) // Метод для получения урона врагом (Enemy)
         {
             int random = Random.Range(1, 101);
-            
+            Debug.Log($"Random number = {random}");
             if (chanceToEvade > 0)    // Проверить возможность уворота врага (и если шанс уворота не положителен)
             {
-                if (random > chanceToEvade) // Проверить случайное число (от 1 до 100)
+                if (random <= chanceToEvade) // Проверить случайное число (от 1 до 100)
                 {
                     _evaded = true;
                     return; // Враг увернулся от атаки
@@ -40,7 +51,23 @@ namespace EnemiesGame
                 damage -= armor; // Уменьшить броню на количество урона 
             }
 
+            if (damage <= 0)
+                return;
+            
             hp -= damage; // Нанести урон здоровью врага 
+            float healthPercent = hp / _maxHp;
+            Vector3 newScale = _health.size;
+            newScale.x = _initialHealthBarWidth * healthPercent;
+            _health.size = newScale;
+
+            if (hp > _maxHp / 2)
+            {
+                _health.color = Color.green;
+            }
+            else
+            {
+                _health.color = Color.red;
+            }
 
             if (hp <= 0)
             {
