@@ -1,19 +1,22 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace EnemiesGame
 {
     public class Enemy : MonoBehaviour // Класс, представляющий врага (Enemy)
     {
-        [SerializeField] private int hp;
-        [SerializeField] private int armor;
-        [SerializeField] private float chanceToEvade = 33; // Шанс врага увернуться
-        [SerializeField] private float speed; // Скорость движения врага
+        [SerializeField] private int _hp;
+        [SerializeField] private int _armor;
+        [SerializeField] private float _chanceToEvade = 33; // Шанс врага увернуться
+        [SerializeField] private float _speed; // Скорость движения врага
 
         private bool _evaded;
 
+        // public Slider enemyHealthBar;
+
         public void Update() 
         {
-            transform.Translate(Vector3.down * (Time.deltaTime * speed));  // Перемещение врага вперед с заданной скоростью
+            transform.Translate(Vector3.down * (Time.deltaTime * _speed));  // Перемещение врага вперед с заданной скоростью
             if (_evaded)
             {
                 var vectorToEvade = Random.Range(1, 3) == 1 ? Vector3.left : Vector3.right;
@@ -22,27 +25,33 @@ namespace EnemiesGame
             }
         }
 
+        // public void SetValueHealthBar()
+        // {
+        //     enemyHealthBar.value = _hp;
+        // }
+        
         public void GetDamage(int damage) // Метод для получения урона врагом (Enemy)
         {
             int random = Random.Range(1, 101);
             
-            if (chanceToEvade > 0)    // Проверить возможность уворота врага (и если шанс уворота не положителен)
+            if (_chanceToEvade > 0)    // Проверить возможность уворота врага (и если шанс уворота не положителен)
             {
-                if (random > chanceToEvade) // Проверить случайное число (от 1 до 100)
+                if (random > _chanceToEvade) // Проверить случайное число (от 1 до 100)
                 {
                     _evaded = true;
                     return; // Враг увернулся от атаки
                 }
             }
 
-            if (armor > 0) // Если у врага есть броня
+            if (_armor > 0) // Если у врага есть броня
             {
-                damage -= armor; // Уменьшить броню на количество урона 
+                damage -= _armor; // Уменьшить броню на количество урона 
             }
+            
+            _hp -= damage; // Нанести урон здоровью врага 
+            
 
-            hp -= damage; // Нанести урон здоровью врага 
-
-            if (hp <= 0)
+            if (_hp <= 0)
             {
                 Destroy(gameObject);
             }
