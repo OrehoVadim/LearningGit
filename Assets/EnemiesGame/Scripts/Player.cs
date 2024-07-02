@@ -1,4 +1,11 @@
+using System;
+using System.Collections;
+using System.Net.Mime;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace EnemiesGame
 {
@@ -12,12 +19,145 @@ namespace EnemiesGame
     
     public class Player : MonoBehaviour // Класс, представляющий игрока
     {
+        [SerializeField] private float _hp;
         [SerializeField] private int _damage; // Урон, наносимый игроком
         [SerializeField] private float _shootInterval;
         [SerializeField] private float _enemyDetectionRadius = 20f;
         [SerializeField] private int _damageBazooka; // Урон, наносимый игроком
         [SerializeField] private float _shootIntervalBazooka;
+        [SerializeField] private Slider _healthSlider;
         
+        private float _collisionDamage = 1;
+        private float _maxHp;
+        
+        [SerializeField] private TMP_Text _scoreText;
+        private int _score = 0;
+
+        [SerializeField] private TMP_Text _timeLimit;
+        [SerializeField] private float _gameTimeLimit = 60f;
+        private float _currentTime = 0f;
+        private bool _isGameOver = false;
+
+        private Vector3 playerPosition;
+
+        // private SpriteRenderer _spriteRenderer;
+        private Animator _animator;
+        
+        [SerializeField] private GameObject _bullet;
+        [SerializeField] private float _bulletSpeed;
+        private Transform _transformBullet;
+        private Vector3 _target;
+        
+        private WeaponType _currentWeapon = WeaponType.CombatRifle;
+        private Enemy _enemy;
+        private float _time = 0;
+
+        private Rigidbody _rigidbody;
+        [SerializeField] private Vector3 _moveVector;
+        [SerializeField] private float _speed = 3f;
+        
+        public void Awake()
+        {
+            _maxHp = _hp;
+            _healthSlider.maxValue = _maxHp;
+            _healthSlider.value = _hp;
+        }
+
+        public void Start()
+        {
+            playerPosition = transform.position;
+            // Debug.Log("Player position" + playerPosition);
+            _score = 0;
+
+            // _spriteRenderer = GetComponent<SpriteRenderer>();
+            _animator = GetComponent<Animator>();
+            if (_animator == null)
+            {
+                Debug.LogWarning("Animator component is missing on the Player object.");
+            }
+
+            _enemy = FindEnemy();
+            if (_enemy != null)
+            {
+                _transformBullet = _enemy.transform;
+                _target = _enemy.transform.position;   
+            }
+
+            _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void Flight()
+        {
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
+
+            _moveVector.x = horizontalInput;
+            _moveVector.y = verticalInput;
+            //_rigidbody.velocity = new Vector3(_moveVector.x * _speed, _moveVector.y * _speed); // без физики движка
+            _rigidbody.AddForce(_moveVector * _speed); // для прыжков
+            Vector2 newPosition = _rigidbody.position + new Vector3(horizontalInput, verticalInput, 0) * Time.deltaTime;
+            _rigidbody.MovePosition(newPosition);
+        }
+
+        private Enemy FindEnemy()
+        {
+            GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
+            if (enemyObject != null)
+            {
+                return enemyObject.GetComponent<Enemy>();
+            }
+            return null;
+        }
+
+        public void FixedUpdate()
+        {
+            // if (Input.GetAxis("Horizontal") < 0)
+            // {
+            //     _spriteRenderer.flipX = true;
+            // }
+            // else if (Input.GetAxis("Horizontal") > 0)
+            // {
+            //     _spriteRenderer.flipX = false;
+            // }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            Debug.Log("Collision:" +  collision.gameObject.name);
+        
+            if (collision.gameObject.CompareTag("Enemy") && _hp > 0)
+            {
+                _hp -= _collisionDamage;
+                _healthSlider.value = _hp;
+                
+                
+                if (_hp <= 0)
+                {
+                    if (_score < 10 && Camera.main != null)
+                    {
+                        Camera.main.GetComponent<UIManager>().Restart();
+                    }
+                    else if (_score >= 10 && Camera.main != null)
+                    {
+                        Camera.main.GetComponent<UIManager>().Win();
+                    }
+                    GameOver();
+                }
+            }
+        }
+
+        private void GameOver()
+        {
+            _isGameOver = true;
+            StartCoroutine(RestartLevelAfterDelay());
+        }
+        
+        private IEnumerator RestartLevelAfterDelay()
+        {
+            yield return new WaitForSeconds(3f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
         public bool CanShoot
         {
             get
@@ -35,12 +175,13 @@ namespace EnemiesGame
             }
         }
 
-        private WeaponType _currentWeapon = WeaponType.CombatRifle;
-        private Enemy _enemy;
-        private float _time = 0;
-
         public void Update()
         {
+            if (Time.timeScale == 0)
+            {
+                return;
+            }
+            
             if (_enemy == null)
             {
                 _enemy = FindNewTargetByColliders();
@@ -53,7 +194,7 @@ namespace EnemiesGame
                     _enemy = null;
                     return;
                 }
-                    
+
                 //find the vector pointing from our position to the target
                 var direction = (_enemy.transform.position - transform.position).normalized;
                 //create the rotation we need to be in to look at the target
@@ -63,51 +204,109 @@ namespace EnemiesGame
                 newRotation.x = 0;
                 newRotation.y = 0;
                 transform.rotation = newRotation;
-                
-                _time += Time.deltaTime;
-            }
-        }
 
-        private Enemy FindNewTargetByColliders()
-        {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, _enemyDetectionRadius);
-            foreach (var hitCollider in hitColliders)
-            {
-                var enemy = hitCollider.GetComponent<Enemy>();
-                if (enemy != null)
+                _bullet.transform.position = Vector2.MoveTowards(transform.position, _target, _bulletSpeed * Time.deltaTime);
+                if (transform.position.x == _target.x && transform.position.y == _target.y)
                 {
-                    var distance = Vector3.Distance(transform.position, enemy.transform.position);
-                    if (distance <= _enemyDetectionRadius)
-                    {
-                        return enemy;
-                    }  
+                    DestroyBullet();
+                }
+                
+                if (_gameTimeLimit > 0)
+                {
+                    _time += Time.deltaTime;
+                    _gameTimeLimit -= Time.deltaTime;
+                    _timeLimit.text = Mathf.Round(_gameTimeLimit).ToString();
+                }
+
+                if (_gameTimeLimit <= 0)
+                {
+                    _gameTimeLimit = 0;
+                    EventManager.OnEnemyDied();
                 }
             }
-
-            return null;
+            Flight();
         }
-
-        public void Shoot() // Метод, вызываемый при выстреле игрока (Player)
+        
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_enemy == null) 
-                return;
-
-            switch (_currentWeapon)
+            if (other.CompareTag("Enemy"))
             {
-                case WeaponType.CombatRifle:
-                    _enemy.GetDamage(_damage);
-                    _time = 0;
-                    break;
-                case WeaponType.Bazooka:
-                    _enemy.GetDamage(_damageBazooka);
-                    _time = 0;
-                    break;
+                DestroyBullet();
             }
         }
-
-        public void ChangeWeapon(int weaponId)
+                
+        void DestroyBullet()
         {
-            _currentWeapon = (WeaponType)weaponId;
+            Destroy(gameObject);
         }
+
+            private Enemy FindNewTargetByColliders()
+            {
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position, _enemyDetectionRadius);
+                foreach (var hitCollider in hitColliders)
+                {
+                    var enemy = hitCollider.GetComponent<Enemy>();
+                    if (enemy != null)
+                    {
+                        var distance = Vector3.Distance(transform.position, enemy.transform.position);
+                        if (distance <= _enemyDetectionRadius)
+                        {
+                            _animator.SetInteger("State", 1);
+                            return enemy;
+                        }  
+                    }
+                }
+            
+                _animator.SetInteger("State", 0);
+                return null;
+            }
+
+            public void Shoot() // Метод, вызываемый при выстреле игрока (Player)
+            {
+                if (_enemy == null) 
+                    return;
+
+                switch (_currentWeapon)
+                {
+                    case WeaponType.CombatRifle:
+                        _enemy.GetDamage(_damage);
+                        _time = 0;
+                        break;
+                    case WeaponType.Bazooka:
+                        _enemy.GetDamage(_damageBazooka);
+                        _time = 0;
+                        break;
+                }
+
+                Instantiate(_bullet, _transformBullet.position, Quaternion.identity);
+
+                // if (EventManager.instance != null)
+                // {
+                //     
+                // }
+            }
+
+            public void ChangeWeapon(int weaponId)
+            {
+                _currentWeapon = (WeaponType)weaponId;
+            }
+
+            public void EnemyDestroy()
+            {
+                UpdateScoreUI();
+            }
+
+            private void UpdateScoreUI()
+            {
+                if (_scoreText != null)
+                {
+                    _score++;
+                    _scoreText.text = $"Score: {_score}";
+                }
+                else
+                {
+                    Debug.LogError("LogError");
+                }
+            }
     }
 }

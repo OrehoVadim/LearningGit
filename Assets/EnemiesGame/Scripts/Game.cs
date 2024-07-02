@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace EnemiesGame
 {
@@ -21,28 +22,39 @@ namespace EnemiesGame
     //       игрок поворачивается в сторону найденного врага и “смотрит” на него до тех пор, 
     //       пока враг не умрет или не самоуничтожится, после этого игрок фокусируется на новом враге.
     //       По нажатию на кнопку игрок “стреляет” во врага, на котором он сфокусирован, нанося ему урон.
-    
+
     // 10.3) Добавляем индикатор здоровья врагам. Можно сделать любым способом, какой захочется.
     //       Добавляем возможность настраивать здоровье противников, их скорость и урон игрока из Юнити.
     //       Добавляем индикатор очков, игрок зарабывает 1 очко за убийство врага
     //       Игра заканчивается через 60 секунд, появляется окно с поздравлением о победе, если мы набрали больше 10 очков или проигрыше, если нет.
     //       Добавляем любую анимацию/систему частиц/индикацию выстрела игрока.
 
-    
+
     public class Game : MonoBehaviour // класс управляющий игровой логикой
     {
-        
+
         [SerializeField] private Enemy _enemyPrefab; // Префаб врага, который будет создаваться
         [SerializeField] private Player _playerPrefab; // Префаб игрока, экземпляр объекта с настройками и компонентами
+
+        public float timeStart = 60f;
+        public Text timerText;
         
         private float _time = 0.0f; // Переменная для отслеживания времени
         public float InterpolationPeriod = 3; // Переменная интервала между созданиями врагов
 
         public void Start() // Инициализация объекта Player в момент его активации
         {
-            _playerPrefab.transform.localPosition = new Vector3(0f, 0f, 0f); // Позиция игрока на поле (transform - компонент объекта с позицией, поворотом и масштабом)
+            _playerPrefab.transform.localPosition =
+                new Vector3(0f, 0f,
+                    0f); // Позиция игрока на поле (transform - компонент объекта с позицией, поворотом и масштабом)
             
+            timerText.text = timeStart.ToString();
         }
-
+        
+        public void Update()
+        {
+            timeStart -= Time.deltaTime;
+            timerText.text = Mathf.Round(timeStart).ToString();
+        }
     }
 }

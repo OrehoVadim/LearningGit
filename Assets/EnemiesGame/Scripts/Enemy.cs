@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -15,6 +16,14 @@ namespace EnemiesGame
         private bool _evaded;
         private float _maxHp;
         private float _initialHealthBarWidth;
+        public Vector3 position;
+
+        // private GameObject _explosion;
+
+        // public delegate void MyDelegate();
+        // public event MyDelegate MyEvent;
+        // public event Action Died; // Делегат с множеством перегрузок - полиморфизм
+        
 
         public void Awake()
         {
@@ -32,6 +41,7 @@ namespace EnemiesGame
                 _evaded = false;
             }
         }
+        
 
         public void GetDamage(int damage) // Метод для получения урона врагом (Enemy)
         {
@@ -71,7 +81,26 @@ namespace EnemiesGame
 
             if (hp <= 0)
             {
+                
+                // Died?.Invoke(); // ? ~ проверка на null ~ пустой делегат или нет
+                Debug.Log("Enemy dead");
+                
+                // GameObject explosionPrefab = Instantiate(_explosion);
+                // explosionPrefab.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+                EnlistmentOfDestruction();
+                
                 Destroy(gameObject);
+                EventManager.OnEnemyDied(); // Вызов метода
+            }
+        }
+
+        private void EnlistmentOfDestruction()
+        {
+            Player player = FindObjectOfType<Player>();
+            if (player != null)
+            {
+                player.EnemyDestroy();
             }
         }
     }
