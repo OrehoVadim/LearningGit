@@ -18,21 +18,24 @@ namespace EnemiesGame
         public void PauseOff()
         {
             _pausePanel.SetActive(false);
-            Time.timeScale = 0;
+            Time.timeScale = 1;
+        }
+
+        public void PauseReStart()
+        {
+            
         }
         
         public void Win()
         {
             _winnerPanel.SetActive(true);
-            Time.timeScale = 0;
+            Time.timeScale = 1;
         }
 
         public void Restart()
         {
             _restartPanel.SetActive(true);
-            // if(_winnerPannel.)
             Time.timeScale = 1;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

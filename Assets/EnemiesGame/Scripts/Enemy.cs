@@ -29,6 +29,7 @@ namespace EnemiesGame
         {
             _maxHp = hp;
             _initialHealthBarWidth = _health.size.x;
+            _health.color = Color.green;
         }
 
         public void Update() 

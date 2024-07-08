@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace EnemiesGame
@@ -30,31 +31,64 @@ namespace EnemiesGame
     //       Добавляем любую анимацию/систему частиц/индикацию выстрела игрока.
 
 
-    public class Game : MonoBehaviour // класс управляющий игровой логикой
+    public class GameManager : MonoBehaviour // класс управляющий игровой логикой
     {
 
         [SerializeField] private Enemy _enemyPrefab; // Префаб врага, который будет создаваться
         [SerializeField] private Player _playerPrefab; // Префаб игрока, экземпляр объекта с настройками и компонентами
-
-        public float timeStart = 60f;
+        [SerializeField] private GameObject _panelSettings;
+        
+        public float timeStart;
         public Text timerText;
         
         private float _time = 0.0f; // Переменная для отслеживания времени
         public float InterpolationPeriod = 3; // Переменная интервала между созданиями врагов
-
+        
         public void Start() // Инициализация объекта Player в момент его активации
         {
-            _playerPrefab.transform.localPosition =
-                new Vector3(0f, 0f,
-                    0f); // Позиция игрока на поле (transform - компонент объекта с позицией, поворотом и масштабом)
+            if (_panelSettings != null)
+            {
+                _panelSettings.SetActive(false);
+            }
+
+            // _playerPrefab.transform.localPosition = new Vector3(0f, 0f, 0f); // Позиция игрока на поле (transform - компонент объекта с позицией, поворотом и масштабом)
             
-            timerText.text = timeStart.ToString();
+            // timerText.text = timeStart.ToString();
         }
         
         public void Update()
         {
             timeStart -= Time.deltaTime;
-            timerText.text = Mathf.Round(timeStart).ToString();
+            // timerText.text = Mathf.Round(timeStart).ToString();
+        }
+
+        public void Play()
+        {
+            SceneManager.LoadScene("EnemiesGameScene");
+            // SceneManager.LoadScene(1);
+        }
+
+        public void GameMenu()
+        {
+            SceneManager.LoadScene("GameMenu");
+            // SceneManager.LoadScene(0);
+        }
+
+        // public void Settings()
+        // {
+        //     if (_panelSettings.activeSelf == false)
+        //     {
+        //         _panelSettings.SetActive(true);
+        //     }
+        //     else if (_panelSettings.activeSelf == true)
+        //     {
+        //         _panelSettings.SetActive(false);
+        //     }
+        // }
+        
+        public void Exit()
+        {
+            Application.Quit();
         }
     }
 }

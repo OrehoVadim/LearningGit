@@ -13,8 +13,8 @@ namespace EnemiesGame
     {
         CombatRifle = 1,
         Bazooka = 2,
-        FlameThrower = 3,
-        LaserGun = 4
+        // FlameThrower = 3,
+        // LaserGun = 4
     }
     
     public class Player : MonoBehaviour // Класс, представляющий игрока
@@ -26,35 +26,29 @@ namespace EnemiesGame
         [SerializeField] private int _damageBazooka; // Урон, наносимый игроком
         [SerializeField] private float _shootIntervalBazooka;
         [SerializeField] private Slider _healthSlider;
+        [SerializeField] private TMP_Text _scoreText;
+        [SerializeField] private TMP_Text _timeLimit;
+        [SerializeField] private float _gameTimeLimit = 60f;
+        [SerializeField] private GameObject _bullet;
+        [SerializeField] private float _bulletSpeed;
+        [SerializeField] private Vector3 _moveVector;
+        [SerializeField] private float _speed = 3f;
+        [SerializeField] private Canvas _canvas;
         
         private float _collisionDamage = 1;
         private float _maxHp;
-        
-        [SerializeField] private TMP_Text _scoreText;
         private int _score = 0;
-
-        [SerializeField] private TMP_Text _timeLimit;
-        [SerializeField] private float _gameTimeLimit = 60f;
-        private float _currentTime = 0f;
-        private bool _isGameOver = false;
-
+        private float _currentTime;
+        private bool _isGameOver;
         private Vector3 playerPosition;
-
         // private SpriteRenderer _spriteRenderer;
         private Animator _animator;
-        
-        [SerializeField] private GameObject _bullet;
-        [SerializeField] private float _bulletSpeed;
         private Transform _transformBullet;
         private Vector3 _target;
-        
         private WeaponType _currentWeapon = WeaponType.CombatRifle;
         private Enemy _enemy;
         private float _time = 0;
-
         private Rigidbody _rigidbody;
-        [SerializeField] private Vector3 _moveVector;
-        [SerializeField] private float _speed = 3f;
         
         public void Awake()
         {
@@ -88,15 +82,15 @@ namespace EnemiesGame
 
         private void Flight()
         {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
-
-            _moveVector.x = horizontalInput;
-            _moveVector.y = verticalInput;
-            //_rigidbody.velocity = new Vector3(_moveVector.x * _speed, _moveVector.y * _speed); // без физики движка
-            _rigidbody.AddForce(_moveVector * _speed); // для прыжков
-            Vector2 newPosition = _rigidbody.position + new Vector3(horizontalInput, verticalInput, 0) * Time.deltaTime;
-            _rigidbody.MovePosition(newPosition);
+            // float horizontalInput = Input.GetAxis("Horizontal");
+            // float verticalInput = Input.GetAxis("Vertical");
+            //
+            // _moveVector.x = horizontalInput;
+            // _moveVector.y = verticalInput;
+            // //_rigidbody.velocity = new Vector3(_moveVector.x * _speed, _moveVector.y * _speed); // без физики движка
+            // _rigidbody.AddForce(_moveVector * _speed); // для прыжков
+            // Vector2 newPosition = _rigidbody.position + new Vector3(horizontalInput, verticalInput, 0) * Time.deltaTime;
+            // _rigidbody.MovePosition(newPosition);
         }
 
         private Enemy FindEnemy()
@@ -121,30 +115,30 @@ namespace EnemiesGame
             // }
         }
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            Debug.Log("Collision:" +  collision.gameObject.name);
-        
-            if (collision.gameObject.CompareTag("Enemy") && _hp > 0)
-            {
-                _hp -= _collisionDamage;
-                _healthSlider.value = _hp;
-                
-                
-                if (_hp <= 0)
-                {
-                    if (_score < 10 && Camera.main != null)
-                    {
-                        Camera.main.GetComponent<UIManager>().Restart();
-                    }
-                    else if (_score >= 10 && Camera.main != null)
-                    {
-                        Camera.main.GetComponent<UIManager>().Win();
-                    }
-                    GameOver();
-                }
-            }
-        }
+        // private void OnCollisionEnter(Collision collision)
+        // {
+        //     Debug.Log("Collision:" + collision.gameObject.name);
+        //
+        //     if (collision.gameObject.CompareTag("Enemy") && _hp > 0)
+        //     {
+        //         _hp -= _collisionDamage;
+        //         _healthSlider.value = _hp;
+        //         
+        //         
+        //         if (_hp <= 0)
+        //         {
+        //             if (_score < 10 && _canvas != null)
+        //             {
+        //                 _canvas.GetComponent<UIManager>().Restart();
+        //             }
+        //             else if (_score >= 10 && _canvas != null)
+        //             {
+        //                 _canvas.GetComponent<UIManager>().Win();
+        //             }
+        //             GameOver();
+        //         }
+        //     }
+        // }
 
         private void GameOver()
         {
@@ -154,7 +148,7 @@ namespace EnemiesGame
         
         private IEnumerator RestartLevelAfterDelay()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
@@ -204,12 +198,7 @@ namespace EnemiesGame
                 newRotation.x = 0;
                 newRotation.y = 0;
                 transform.rotation = newRotation;
-
-                _bullet.transform.position = Vector2.MoveTowards(transform.position, _target, _bulletSpeed * Time.deltaTime);
-                if (transform.position.x == _target.x && transform.position.y == _target.y)
-                {
-                    DestroyBullet();
-                }
+                
                 
                 if (_gameTimeLimit > 0)
                 {
@@ -217,14 +206,28 @@ namespace EnemiesGame
                     _gameTimeLimit -= Time.deltaTime;
                     _timeLimit.text = Mathf.Round(_gameTimeLimit).ToString();
                 }
-
-                if (_gameTimeLimit <= 0)
+                
+                else if (_gameTimeLimit <= 0)
                 {
                     _gameTimeLimit = 0;
-                    EventManager.OnEnemyDied();
+                    if(_score < 10)
+                    {
+                        _canvas.GetComponent<UIManager>().Restart();
+                    }
+                    else if(_score >= 10)
+                    {
+                        _canvas.GetComponent<UIManager>().Win();
+                    }
                 }
             }
+            
             Flight();
+            
+            //_bullet.transform.position = Vector2.MoveTowards(transform.position, _target, _bulletSpeed * Time.deltaTime);
+            // if (transform.position.x == _target.x && transform.position.y == _target.y)
+            // {
+            //     DestroyBullet();
+            // }
         }
         
         private void OnTriggerEnter2D(Collider2D other)
@@ -278,8 +281,7 @@ namespace EnemiesGame
                         break;
                 }
 
-                Instantiate(_bullet, _transformBullet.position, Quaternion.identity);
-
+                // Instantiate(_bullet, _transformBullet.position, Quaternion.identity);
                 // if (EventManager.instance != null)
                 // {
                 //     
