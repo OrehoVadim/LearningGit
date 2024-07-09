@@ -90,11 +90,6 @@ namespace LearningScripts.FirstGame
         {
             return Hp - ObjectDamage;
         }
-
-        public  void Movement()
-        {
-            float speed = 5f;
-        }
     }
 
     public class Tank : ObjectFeatures
