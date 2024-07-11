@@ -35,6 +35,7 @@ namespace EnemiesGame
         [SerializeField] private Vector3 _moveVector;
         [SerializeField] private Canvas _canvas;
         [SerializeField] private float _speed;
+        [SerializeField] private ParticleSystem _particleSystem;
         // [SerializeField] private Vector2 _direction;
         
         
@@ -236,6 +237,7 @@ namespace EnemiesGame
                         _time = 0;
                         break;
                 }
+                _particleSystem.Play();
 
                 // Instantiate(_bullet, _transformBullet.position, Quaternion.identity);
                 // if (EventManager.instance != null)
