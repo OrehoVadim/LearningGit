@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 6d74b3680e2079c4b8b46892eab047e3
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - HanSansNormal
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 84f062f09a2167243be694e0fabd5c72, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
