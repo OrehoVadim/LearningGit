@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -407,7 +407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &176805107
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -9929,6 +9929,10 @@ PrefabInstance:
       propertyPath: _scoreAudioSource
       value: 
       objectReference: {fileID: 619035480}
+    - target: {fileID: 1532465343929755007, guid: 35d63196de86ab1489c4dbd86b16c8ff, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1731282682086131926, guid: 35d63196de86ab1489c4dbd86b16c8ff, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9981,8 +9985,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5384413212186303945, guid: 35d63196de86ab1489c4dbd86b16c8ff, type: 3}
+      propertyPath: m_Mass
+      value: 0.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384413212186303945, guid: 35d63196de86ab1489c4dbd86b16c8ff, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384413212186303945, guid: 35d63196de86ab1489c4dbd86b16c8ff, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5091084095830002786, guid: 35d63196de86ab1489c4dbd86b16c8ff, type: 3}
+    - {fileID: 4322928911861247792, guid: 35d63196de86ab1489c4dbd86b16c8ff, type: 3}
+    - {fileID: 5384413212186303945, guid: 35d63196de86ab1489c4dbd86b16c8ff, type: 3}
+    - {fileID: 6076881975195848024, guid: 35d63196de86ab1489c4dbd86b16c8ff, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -9,12 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5557098366489680951}
-  - component: {fileID: 188979048014963579}
   - component: {fileID: 894988164643044590}
   - component: {fileID: 3422385931672683884}
   - component: {fileID: 1905665807985387440}
-  - component: {fileID: 2307000843623436222}
-  - component: {fileID: 5981675736981382110}
+  - component: {fileID: 1410821290029334687}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Enemy
@@ -38,27 +36,6 @@ Transform:
   - {fileID: 4594596950443074513}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &188979048014963579
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2824745717726602588}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &894988164643044590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +52,7 @@ MonoBehaviour:
   armor: 0
   chanceToEvade: 0
   speed: 1
-  _health: {fileID: 6158326681754609154, guid: 9e7eb46d375b14dfd9ac5d609725800f, type: 3}
+  _health: {fileID: 1601547008407231117}
   position: {x: 0, y: 0, z: 0}
 --- !u!212 &3422385931672683884
 SpriteRenderer:
@@ -150,40 +127,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!54 &2307000843623436222
-Rigidbody:
+--- !u!58 &1410821290029334687
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2824745717726602588}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &5981675736981382110
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2824745717726602588}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -192,12 +144,24 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.16, y: 0.16, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.08
 --- !u!1001 &4850117287828061327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -263,6 +227,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e7eb46d375b14dfd9ac5d609725800f, type: 3}
+--- !u!212 &1601547008407231117 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6158326681754609154, guid: 9e7eb46d375b14dfd9ac5d609725800f, type: 3}
+  m_PrefabInstance: {fileID: 4850117287828061327}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4594596950443074513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8974647580142624606, guid: 9e7eb46d375b14dfd9ac5d609725800f, type: 3}
