@@ -20,11 +20,6 @@ namespace EnemiesGame
             _pausePanel.SetActive(false);
             Time.timeScale = 1;
         }
-
-        public void PauseReStart()
-        {
-            
-        }
         
         public void Win()
         {

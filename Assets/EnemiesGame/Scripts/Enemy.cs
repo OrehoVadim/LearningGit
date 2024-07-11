@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace EnemiesGame
@@ -17,13 +15,6 @@ namespace EnemiesGame
         private float _maxHp;
         private float _initialHealthBarWidth;
         public Vector3 position;
-
-        // private GameObject _explosion;
-
-        // public delegate void MyDelegate();
-        // public event MyDelegate MyEvent;
-        // public event Action Died; // Делегат с множеством перегрузок - полиморфизм
-        
 
         public void Awake()
         {
@@ -85,9 +76,6 @@ namespace EnemiesGame
                 
                 // Died?.Invoke(); // ? ~ проверка на null ~ пустой делегат или нет
                 Debug.Log("Enemy dead");
-                
-                // GameObject explosionPrefab = Instantiate(_explosion);
-                // explosionPrefab.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
                 EnlistmentOfDestruction();
                 

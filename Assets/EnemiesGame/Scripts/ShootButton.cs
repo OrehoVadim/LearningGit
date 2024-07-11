@@ -1,4 +1,3 @@
-using System;
 using EnemiesGame;
 using UnityEngine;
 using UnityEngine.UI;

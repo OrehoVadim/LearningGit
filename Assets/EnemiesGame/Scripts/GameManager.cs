@@ -50,41 +50,23 @@ namespace EnemiesGame
             {
                 _panelSettings.SetActive(false);
             }
-
-            // _playerPrefab.transform.localPosition = new Vector3(0f, 0f, 0f); // Позиция игрока на поле (transform - компонент объекта с позицией, поворотом и масштабом)
-            
-            // timerText.text = timeStart.ToString();
         }
         
         public void Update()
         {
             timeStart -= Time.deltaTime;
-            // timerText.text = Mathf.Round(timeStart).ToString();
         }
 
         public void Play()
         {
             SceneManager.LoadScene("EnemiesGameScene");
-            // SceneManager.LoadScene(1);
+            Time.timeScale = 1;
         }
 
         public void GameMenu()
         {
             SceneManager.LoadScene("GameMenu");
-            // SceneManager.LoadScene(0);
         }
-
-        // public void Settings()
-        // {
-        //     if (_panelSettings.activeSelf == false)
-        //     {
-        //         _panelSettings.SetActive(true);
-        //     }
-        //     else if (_panelSettings.activeSelf == true)
-        //     {
-        //         _panelSettings.SetActive(false);
-        //     }
-        // }
         
         public void Exit()
         {

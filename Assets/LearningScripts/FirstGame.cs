@@ -22,16 +22,11 @@ namespace LearningScripts.FirstGame
             tanks.Add(new Tank());
             List<AirPlane> airPlanes = new List<AirPlane>();
             airPlanes.Add(new AirPlane());
-
-            // Player player = new Player();
-
-            // bots[0].Hp = Bot.Shoot(bots[0].Hp);
+            
             Debug.Log(bots[0].Hp);
 
-            // tanks[0].Shoot(player.WeaponDamage);
             Debug.Log(tanks[0].Armor);
 
-            // airPlanes[0].Hp = player.Shoot(airPlanes[0].Hp);
             Debug.Log(airPlanes[0].Hp);
         }
     }
@@ -96,18 +91,6 @@ namespace LearningScripts.FirstGame
     {
         public int Hp = 100;
         public int Armor = 100;
-
-        // public override void Shoot(int WeaponDamage)
-        // {
-        //     if (Armor >= 0)
-        //     {
-        //         Armor -= WeaponDamage;
-        //     }
-        //     else
-        //     {
-        //         Hp -= WeaponDamage;
-        //     }
-        // } 
 
         public override void Movement()
         {

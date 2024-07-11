@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Net.Mime;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace EnemiesGame
@@ -36,18 +31,13 @@ namespace EnemiesGame
         [SerializeField] private Canvas _canvas;
         [SerializeField] private float _speed;
         [SerializeField] private ParticleSystem _particleSystem;
-        // [SerializeField] private Vector2 _direction;
-        
         
         private float _maxHp;
         private int _score;
         private float _currentTime;
         private bool _isGameOver;
-        // private Vector3 playerPosition;
-        // private SpriteRenderer _spriteRenderer;
         private Animator _animator;
         private Transform _transformBullet;
-        // private Vector3 _target;
         private WeaponType _currentWeapon = WeaponType.CombatRifle;
         private Enemy _enemy;
         private float _time;
@@ -64,11 +54,8 @@ namespace EnemiesGame
 
         public void Start()
         {
-            // playerPosition = transform.position;
-            // Debug.Log("Player position" + playerPosition);
             _score = 0;
-
-            // _spriteRenderer = GetComponent<SpriteRenderer>();
+            _scoreAudioSource = GetComponent<AudioSource>();
             _animator = GetComponent<Animator>();
             if (_animator == null)
             {
@@ -189,88 +176,70 @@ namespace EnemiesGame
         private void Flight(Vector3 direction)
         {
             _characterController.Move(direction * _speed * Time.deltaTime);
-            // float horizontalInput = Input.GetAxis("Horizontal");
-            // float verticalInput = Input.GetAxis("Vertical");
-            //
-            // _moveVector.x = horizontalInput;
-            // _moveVector.y = verticalInput;
-            // //_rigidbody.velocity = new Vector3(_moveVector.x * _speed, _moveVector.y * _speed); // без физики движка
-            // _rigidbody.AddForce(_moveVector * _speed); // для прыжков
-            // Vector2 newPosition = _rigidbody.position + new Vector3(horizontalInput, verticalInput, 0) * Time.deltaTime;
-            // _rigidbody.MovePosition(newPosition);
         }
 
         private Enemy FindNewTargetByColliders()
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, _enemyDetectionRadius);
+            foreach (var hitCollider in hitColliders)
             {
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, _enemyDetectionRadius);
-                foreach (var hitCollider in hitColliders)
+                var enemy = hitCollider.GetComponent<Enemy>();
+                if (enemy != null)
                 {
-                    var enemy = hitCollider.GetComponent<Enemy>();
-                    if (enemy != null)
+                    var distance = Vector3.Distance(transform.position, enemy.transform.position);
+                    if (distance <= _enemyDetectionRadius)
                     {
-                        var distance = Vector3.Distance(transform.position, enemy.transform.position);
-                        if (distance <= _enemyDetectionRadius)
-                        {
-                            _animator.SetInteger("State", 1);
-                            return enemy;
-                        }  
-                    }
-                }
-            
-                _animator.SetInteger("State", 0);
-                return null;
-            }
-
-            public void Shoot() // Метод, вызываемый при выстреле игрока (Player)
-            {
-                if (_enemy == null) 
-                    return;
-
-                switch (_currentWeapon)
-                {
-                    case WeaponType.CombatRifle:
-                        _enemy.GetDamage(_damage);
-                        _time = 0;
-                        break;
-                    case WeaponType.Bazooka:
-                        _enemy.GetDamage(_damageBazooka);
-                        _time = 0;
-                        break;
-                }
-                _particleSystem.Play();
-
-                // Instantiate(_bullet, _transformBullet.position, Quaternion.identity);
-                // if (EventManager.instance != null)
-                // {
-                //     
-                // }
-            }
-
-            public void ChangeWeapon(int weaponId)
-            {
-                _currentWeapon = (WeaponType)weaponId;
-            }
-
-            public void EnemyDestroy()
-            {
-                UpdateScoreUI();
-            }
-
-            private void UpdateScoreUI()
-            {
-                if (_scoreText != null)
-                {
-                    _score++;
-                    
-                    // _scoreAudioSource.Play();
-
-                    _scoreText.text = $"Score: {_score}";
-                }
-                else
-                {
-                    Debug.LogError("LogError");
+                        _animator.SetInteger("State", 1);
+                        return enemy;
+                    }  
                 }
             }
         
+            _animator.SetInteger("State", 0);
+            return null;
+        }
+
+        public void Shoot() // Метод, вызываемый при выстреле игрока (Player)
+        {
+            if (_enemy == null) 
+                return;
+
+            switch (_currentWeapon)
+            {
+                case WeaponType.CombatRifle:
+                    _enemy.GetDamage(_damage);
+                    _time = 0;
+                    break;
+                case WeaponType.Bazooka:
+                    _enemy.GetDamage(_damageBazooka);
+                    _time = 0;
+                    break;
+            }
+            _particleSystem.Play();
+        }
+
+        public void ChangeWeapon(int weaponId)
+        {
+            _currentWeapon = (WeaponType)weaponId;
+        }
+
+        public void EnemyDestroy()
+        {
+            UpdateScoreUI();
+        }
+
+        private void UpdateScoreUI()
+        {
+            if (_scoreText != null)
+            {
+                _score++;
+                _scoreAudioSource.Play();
+                _scoreText.text = $"Score: {_score}";
+            }
+            else
+            {
+                Debug.LogError("LogError");
+            }
+        }
     }
 }
