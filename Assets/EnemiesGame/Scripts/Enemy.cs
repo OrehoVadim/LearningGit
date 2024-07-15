@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -5,6 +6,7 @@ namespace EnemiesGame
 {
     public class Enemy : MonoBehaviour // Класс, представляющий врага (Enemy)
     {
+        
         [SerializeField] private int hp;
         [SerializeField] private int armor;
         [SerializeField] private float chanceToEvade = 33; // Шанс врага увернуться
@@ -92,5 +94,6 @@ namespace EnemiesGame
                 player.EnemyDestroy();
             }
         }
+        
     }
 }
