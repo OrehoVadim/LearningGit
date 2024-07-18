@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // [SerializeField] private int _attackDamage = 25;
-    //
+    [SerializeField] private int _attackDamage = 25;
+    
     // private void OnCollisionEnter(Collision collision)
     // {
     //     CannonController cannon = collision.collider.GetComponent<CannonController>();
@@ -12,5 +12,4 @@ public class EnemyController : MonoBehaviour
     //      cannon.TakeDamage(_attackDamage);
     //     }
     // }
-
 }
