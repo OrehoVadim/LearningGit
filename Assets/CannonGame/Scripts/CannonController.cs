@@ -16,6 +16,15 @@ public class CannonController : MonoBehaviour
     // [SerializeField] private float _searchRadius = 10f;
     // private float _nextFireTime;
     
+    public void Start()
+    {
+        _currentHealth = _maxHealth;
+        _healthSlider.targetGraphic.color = Color.green;
+        UpdateHealthSlider(_currentHealth, _maxHealth);
+        
+        // _nextFireTime = Time.time;
+    }
+    
     private void OnEnable()
     {
         EventManager.OnHealsUpdate += UpdateHealthSlider;
@@ -26,17 +35,11 @@ public class CannonController : MonoBehaviour
         EventManager.OnHealsUpdate -= UpdateHealthSlider;
     }
     
-    public void Start()
-    {
-        _currentHealth = _maxHealth;
-        _healthSlider.targetGraphic.color = Color.green;
-        UpdateHealthSlider(_currentHealth, _maxHealth);
-        
-        // _nextFireTime = Time.time;
-    }
-    
     private void UpdateHealthSlider(int currentHealth, int maxHealth)
     {
+        _currentHealth = currentHealth;
+        _maxHealth = maxHealth;
+        
         _healthSlider.value = (float)_currentHealth / _maxHealth;
     
         if (_healthSlider.value > 0.5f)

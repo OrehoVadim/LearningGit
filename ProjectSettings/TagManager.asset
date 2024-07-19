@@ -7,6 +7,8 @@ TagManager:
   - calculator1
   - Enemy
   - Cannon
+  - DestructionPoint
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
