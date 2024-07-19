@@ -2,13 +2,12 @@ namespace CannonGame.Scripts
 {
     public class EventManager
     {
-        public delegate void HealthUpdate(int currentHealth, int maxHealth);
+        public delegate void EnemyReachedDestructionPoint(int damage);
+        public static event EnemyReachedDestructionPoint OnEnemyReachedDestructionPoint;
 
-        public static event HealthUpdate OnHealsUpdate;
-
-        public static void TriggerHealthUpdate(int currentHealth, int maxHealth)
+        public static void TriggerEnemyReachedDestructionPoint(int damage)
         {
-            OnHealsUpdate?.Invoke(currentHealth, maxHealth);
+            OnEnemyReachedDestructionPoint?.Invoke(damage);
         }
     }
 }

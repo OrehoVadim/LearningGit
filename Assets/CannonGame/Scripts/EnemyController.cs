@@ -1,10 +1,10 @@
-using System;
+using CannonGame.Scripts;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 5f;
-    [SerializeField] private int _attackDamage = 25;
+    [SerializeField] private int _damageToCannon = 25;
     
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Transform _destructionPoint;
@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void FixedUpdate()
     {
         MoveToDestructionPoint();
     }
@@ -41,28 +41,14 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Destruction point is not assigned!");
         }
     }
-
+    
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("DestructionPoint"))
         {
             Destroy(gameObject);
-            
+            EventManager.TriggerEnemyReachedDestructionPoint(_damageToCannon);
         }
     }
-
-    // private void AttackDamage()
-    // {
-    //     
-    // }
-    //
-    // private void DamageToCannon()
-    // { 
-    //     CannonController cannon = FindObjectOfType<CannonController>();
-    //     if (cannon != null)
-    //     {
-    //         AttackDamage();
-    //     }
-    //     Destroy(gameObject);
-    // }
 }
