@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using CannonGame.Scripts;
 using UnityEngine;
@@ -5,40 +6,43 @@ using UnityEngine.UI;
 
 public class CannonController : MonoBehaviour
 {
-    [SerializeField] private float _maxHealth = 100f;
+    [SerializeField] private int _maxHealth = 100;
     [SerializeField] private float _rotationSpeed = 10f;
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _cannonCorePrefab;
-    [SerializeField] private float _fireInterval = 1f;
     
     private float _currentHealth;
     private GameObject _currentTargetEnemy;
-    private bool _canFire = true;
 
     public void Start()
     {
         _currentHealth = _maxHealth;
         _healthSlider.value = _currentHealth / _maxHealth;
         _healthSlider.targetGraphic.color = Color.green;
-        UpdateHealthSlider();
         
-        StartCoroutine(AutomaticFire());
+        UpdateHealthSlider();
     }
-    
-    private IEnumerator AutomaticFire()
+
+    private void Update()
     {
-        while (true)
+        RotateTowardsMouse();
+
+        if (Input.GetMouseButtonDown(0))
         {
-            if (_canFire)
-            {
-                FireCannon();
-                _canFire = false;
-                yield return new WaitForSeconds(_fireInterval);
-                _canFire = true;
-            }
-            yield return null;
+            FireCannon();
         }
+    }
+
+    private void RotateTowardsMouse()
+    {
+        Vector3 MouseShotPoint = Input.mousePosition;
+        MouseShotPoint.z = -Camera.main.transform.position.z;
+        Vector3 targetPosition = Camera.main.ScreenToWorldPoint(MouseShotPoint);
+        Vector3 direction = targetPosition - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        angle = Mathf.Clamp(angle, -45f, 45f);
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     }
 
     public void FireCannon()
@@ -82,14 +86,14 @@ public class CannonController : MonoBehaviour
     
     private void UpdateHealthSlider()
     {
-        _healthSlider.value = _currentHealth / _maxHealth;
+        _healthSlider.value = _currentHealth;
         Debug.Log($"Slider value updated: {_healthSlider.value}");
     
-        if (_healthSlider.value > 0.5f)
+        if (_healthSlider.value > 50)
         {
             _healthSlider.targetGraphic.color = Color.green;
         }
-        else if (_healthSlider.value > 0.2f) // _maxHealth / 2
+        else if (_healthSlider.value > 20)
         {
             _healthSlider.targetGraphic.color = Color.yellow;
         }

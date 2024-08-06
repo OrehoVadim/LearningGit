@@ -9,6 +9,14 @@ TagManager:
   - Cannon
   - DestructionPoint
   - SpawnPoint
+  - Enemys
+  - Ork
+  - Hunter
+  - Ninja
+  - PirateWithCannon
+  - CannonCore
+  - PirateCannonCore
+  - Castle
   layers:
   - Default
   - TransparentFX

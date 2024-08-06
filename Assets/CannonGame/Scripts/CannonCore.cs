@@ -6,10 +6,10 @@ namespace CannonGame.Scripts
     public class CannonCore : MonoBehaviour
     {
         [SerializeField] private float _speed = 50f;
-        [SerializeField] private int _damage = 10;
+        [SerializeField] private int _damage = 100;
         private Rigidbody2D _rigidbody;
 
-        private void Start()
+        private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _rigidbody.velocity = transform.right * _speed;
@@ -29,9 +29,18 @@ namespace CannonGame.Scripts
         {
             if (collision.CompareTag("Enemy"))
             {
-                collision.GetComponent<EnemyController>()?.TakeDamage(_damage);
-                Destroy(gameObject);
+                var enemyController = collision.GetComponent<EnemyController>();
+                if (enemyController != null)
+                {
+                   enemyController.TakeDamage(_damage);
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.LogError("Enemy does not have EnemyController component.");
+                }
             }
+            
         }
     }
 }

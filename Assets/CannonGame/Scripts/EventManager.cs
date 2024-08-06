@@ -8,7 +8,6 @@ namespace CannonGame.Scripts
         public static event EnemyReachedDestructionPoint OnEnemyReachedDestructionPoint;
 
         public delegate void EnemyDestroyed(GameObject destroyedEnemy);
-
         public static event EnemyDestroyed OnEnemyDestroyed;
         
         public static void TriggerEnemyReachedDestructionPoint(int damage)
