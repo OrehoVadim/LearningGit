@@ -25,22 +25,21 @@ namespace CannonGame.Scripts
             return _speed;
         }
         
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Enemy"))
-            {
-                var enemyController = collision.GetComponent<EnemyController>();
-                if (enemyController != null)
-                {
-                   enemyController.TakeDamage(_damage);
-                    Destroy(gameObject);
-                }
-                else
-                {
-                    Debug.LogError("Enemy does not have EnemyController component.");
-                }
-            }
-            
-        }
+        // private void OnTriggerEnter2D(Collider2D collision)
+        // {
+        //     if (collision.CompareTag("Enemy"))
+        //     {
+        //         var Enemy = collision.GetComponent<Enemy>();
+        //         if (Enemy != null)
+        //         {
+        //            Enemy.TakeDamage(_damage);
+        //             Destroy(gameObject);
+        //         }
+        //         else
+        //         {
+        //             Debug.LogError("Enemy does not have EnemyManager component.");
+        //         }
+        //     }
+        // }
     }
 }

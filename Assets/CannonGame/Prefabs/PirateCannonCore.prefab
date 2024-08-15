@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9148187697124588261}
   - component: {fileID: 7306540427908642059}
   - component: {fileID: 8945153713447615166}
-  - component: {fileID: 3299511799041552613}
+  - component: {fileID: 2905020044060881956}
   m_Layer: 0
   m_Name: PirateCannonCore
   m_TagString: PirateCannonCore
@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134055903330760228}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: -0.51157326, w: 0.85923964}
   m_LocalPosition: {x: 7.6913, y: 1.0998, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -61.537}
 --- !u!212 &9148187697124588261
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ CircleCollider2D:
   m_Offset: {x: -0.12878476, y: -0.022207957}
   serializedVersion: 2
   m_Radius: 1.3057209
---- !u!114 &3299511799041552613
+--- !u!114 &2905020044060881956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,8 +158,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2134055903330760228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f4ffe5334e74e7582a9034c4286d0fc, type: 3}
+  m_Script: {fileID: 11500000, guid: a4734f37d95467b48afc73829aa689c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 50
-  _damage: 10
+  _damage: 100

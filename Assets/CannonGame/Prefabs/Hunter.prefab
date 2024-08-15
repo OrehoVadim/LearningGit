@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5351032707851646844}
   - component: {fileID: 2719254581076511575}
-  - component: {fileID: 6775800987429184312}
+  - component: {fileID: 4080673531687734990}
   - component: {fileID: 1851041669902121855}
   - component: {fileID: 2040103299303962721}
   m_Layer: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6775800987429184312
+--- !u!114 &4080673531687734990
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,16 +96,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6167135702354774959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d500b3f39de50b4c9b64ff869001b5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 09e6116466af481ab5ff6cf9108e47ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingHealth: 10
-  _moveSpeed: 10
+  _hp: 10
+  _moveSpeed: 5
   _collisionDamageToCannon: 10
-  _spawnPoint: {fileID: 6050960086222084612, guid: 8af63c061c9e7424d8f59ea8cf9cdebb, type: 3}
-  _destructionPoint: {fileID: 7630726659824186411, guid: 943fa3b28165b9545a1c5c18491f0c5a, type: 3}
-  _enemyPrefabs: []
-  _enemyBornInterval: 1
 --- !u!50 &1851041669902121855
 Rigidbody2D:
   serializedVersion: 4

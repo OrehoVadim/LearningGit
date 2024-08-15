@@ -17,6 +17,9 @@ TagManager:
   - CannonCore
   - PirateCannonCore
   - Castle
+  - FirePoint
+  - PirateCannon
+  - PirateFirePoint
   layers:
   - Default
   - TransparentFX

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using EnemiesGame;
 using UnityEngine;
+using Enemy = CannonGame.Scripts.Enemy;
 using Random = UnityEngine.Random;
 
 public class EnemiesManager : MonoBehaviour

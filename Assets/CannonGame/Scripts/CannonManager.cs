@@ -4,7 +4,7 @@ using CannonGame.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CannonController : MonoBehaviour
+public class CannonManager : MonoBehaviour
 {
     [SerializeField] private int _maxHealth = 100;
     [SerializeField] private float _rotationSpeed = 10f;
