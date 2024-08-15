@@ -1421,6 +1421,8 @@ MonoBehaviour:
   _pirateFirePoint: {fileID: 5870927464620148055, guid: a27ec8108628e2d46b91888c5c41b582, type: 3}
   _enemyPrefabs:
   - {fileID: 4080673531687734990, guid: efec0788eabe0a446aac3b411acd0433, type: 3}
+  - {fileID: 1749495446910484125, guid: c8cbb63fa04454148b0fceea5aafb0b3, type: 3}
+  - {fileID: 5044702038380259985, guid: 753235e8fdf77144fafef46a78916293, type: 3}
   - {fileID: 7531613278769377937, guid: a4e7058c0e65f45449a10046e5e368c6, type: 3}
   _enemyBornInterval: 5
 --- !u!1 &1978532778

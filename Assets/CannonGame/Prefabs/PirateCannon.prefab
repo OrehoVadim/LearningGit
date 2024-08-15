@@ -190,6 +190,7 @@ MonoBehaviour:
   _pirateCannonCorePrefab: {fileID: 2134055903330760228, guid: 9abf7b0171b34e547a5a11343475b350, type: 3}
   _targetPosition: {x: -82.7, y: 4.5}
   _pirateFirePoint: {fileID: 5870927464620148055, guid: a27ec8108628e2d46b91888c5c41b582, type: 3}
+  _hasReachedShootingPosition: 1
 --- !u!50 &1851041669902121855
 Rigidbody2D:
   serializedVersion: 4

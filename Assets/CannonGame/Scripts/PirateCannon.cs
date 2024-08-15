@@ -65,21 +65,21 @@ public class PirateCannon : Enemy
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("PirateFirePoint"))
-        {
-            _hasReachedShootingPosition = true;
-            transform.position = _pirateFirePoint.position;
-            Debug.Log("Reached shooting position");
-
-            if (!_startedShooting)
-            {
-                StartCoroutine(Shoot());
-                _startedShooting = true;
-            }
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (collision.CompareTag("PirateFirePoint"))
+    //     {
+    //         _hasReachedShootingPosition = true;
+    //         transform.position = _pirateFirePoint.position;
+    //         Debug.Log("Reached shooting position");
+    //
+    //         if (!_startedShooting)
+    //         {
+    //             StartCoroutine(Shoot());
+    //             _startedShooting = true;
+    //         }
+    //     }
+    // }
 
     private IEnumerator Shoot()
     {
